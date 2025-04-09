@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
               children: [
                 Text("Hello world"),
                 Text(
-                  "Cybrom",
+                  "CYBROM",
                   style: TextStyle(fontSize: 30, color: Colors.red),
                 ),
             
@@ -29,21 +29,23 @@ class HomePage extends StatelessWidget {
                   children: [
                     Container(
                         decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                      child: Text("Container 1"),
-                      
+                        child: Text("Container 1"),
+                       padding:EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                     ),
                     Container(
                                 decoration: BoxDecoration(border: Border.all(color: Colors.black)),
                       child: Text("Container 2"),
+                       padding:EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                     ),
                     Container(
                                 decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-                                  
                       child: Text("Container 3"),
+                       padding:EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                     ),
                     Container(
                                 decoration: BoxDecoration(border: Border.all(color: Colors.black)),
                       child: Text("Container 4"),
+                       padding:EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                     ),
                   ],
             
