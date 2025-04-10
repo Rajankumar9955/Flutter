@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pro1/3rd%20day/Layout_widget.dart';
 import 'package:pro1/Home_Page.dart';
 import 'package:pro1/2nd%20day/secondDay.dart';
 
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       // home:HomePage(),
-       home: ProductPage(),
+      //  home: ProductPage(),
+      home: LayoutWidget(),
        
  
           );
