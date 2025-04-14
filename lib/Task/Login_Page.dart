@@ -26,15 +26,96 @@ class LoginPage extends StatelessWidget {
                       ),
                       
                     ),
+                    SizedBox(height: 34,),
                     TextFormField(
                      decoration: InputDecoration(
-                      hintText: "Email"
+                      hintText: "Username or Email",
+                      prefixIcon: Icon(Icons.email),
+                      border: OutlineInputBorder(),
+                      
                      ),
-                    )
+                     onChanged: (String value){
+                            
+                     },
+                     validator: (value) {
+                       return value!.isEmpty ? 'Please Enter Username or Email' : null;
+                     },
+                     
+                    ),
+                    SizedBox(height: 28,),
+                    TextFormField(
+                             decoration: InputDecoration(
+                              hintText: "Password",
+                              prefixIcon: Icon(Icons.password), 
+                              border: OutlineInputBorder(),                             
+                             ),       
+                    ),
+                          SizedBox(height: 8,),
+                    Column(
+                         mainAxisAlignment: MainAxisAlignment.end,
+                         crossAxisAlignment: CrossAxisAlignment.end,
+                         children: [
+                          // InkWell(
+                          //   onTap: () {
+                          //       Text("Forget Password", style: TextStyle(color: Colors.red, fontSize: 18, fontWeight: FontWeight.bold),);
+                          //   },
+                          // )
+                          
+                               Text("Forget Password", style: TextStyle(color: Colors.red, fontSize: 18, fontWeight: FontWeight.bold,),)
 
+                         ],
+                    ),
+                     SizedBox(height: 35,),
+                    MaterialButton(onPressed: (){},
+                    minWidth: double.infinity,
+                         child: Text("Login",style: TextStyle(fontSize: 15, fontFamily: "Montserrat", fontWeight: FontWeight.bold),),
+                         color: Colors.red,
+                         height: 50,
+                         textColor: Colors.white,
+                    ),
                   ],
+              ),  
+              SizedBox(height: 45,),
+             Column(
+              children: [
+                Text("- OR Continue With -",style: TextStyle(fontSize: 16, fontFamily: "Montserrat", fontWeight: FontWeight.bold, color: Colors.black),),
+              ],
+             ),
+             SizedBox(height: 24,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                // crossAxisAlignment: CrossAxisAlignment.start,
+
+                children: [
+                  Container(
+                          height: 55,
+                          width:  55,
+                          decoration: BoxDecoration(border: Border.all(color: const Color.fromARGB(255, 234, 21, 21)), borderRadius: BorderRadius.circular(50)),
+                          child: Image.asset("assets/googleImage.jpeg", height: 50, width: 50, ),
+                  ),Container(
+                          height: 55,
+                          width:  55,
+                          decoration: BoxDecoration(border: Border.all(color: const Color.fromARGB(255, 234, 20, 20)), borderRadius: BorderRadius.circular(50)),
+                          child: Image.asset("assets/applelogo.jpeg", height: 50,width: 50,),
+                  ),Container(
+                          height: 55,
+                          width:  55,
+                          decoration: BoxDecoration(border: Border.all(color: const Color.fromARGB(255, 240, 21, 21)), borderRadius: BorderRadius.circular(50)),
+                          child: Image.asset("assets/facebook.jpeg", height: 50, width: 50,),
+                  )
+                ],
+                
               ),
+              SizedBox(height: 35,),
+               Column(
+               
+              children: [
+                Text("Create An Account SignUp",style: TextStyle(fontSize: 16, fontFamily: "Montserrat", fontWeight: FontWeight.bold, color: Colors.black),),
+              ],
+             ),
+              
             ],
+
           ),
         ),
         ) ,
