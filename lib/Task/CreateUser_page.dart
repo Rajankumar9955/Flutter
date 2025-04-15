@@ -2,13 +2,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:pro1/Task/CreateUser_page.dart';
-import 'package:pro1/Task/ForgetPass_Page.dart';
-import 'package:pro1/Task/Home_Page.dart';
+import 'package:pro1/Task/Login_Page.dart';
 import 'package:pro1/Task/Task.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class CreateUserPage extends StatelessWidget {
+  const CreateUserPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +22,7 @@ class LoginPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      "Welcome\nBack!",
+                      "Create an\naccount",
                       style: TextStyle(
                         fontSize: 30, color: Colors.black,
                         fontFamily: "Montserrat",
@@ -56,27 +54,41 @@ class LoginPage extends StatelessWidget {
                               border: OutlineInputBorder(),                             
                              ),       
                     ),
+                     SizedBox(height: 34,),
+                    TextFormField(
+                     decoration: InputDecoration(
+                      hintText: "Confirm Password",
+                      prefixIcon: Icon(Icons.password),
+                      border: OutlineInputBorder(),
+                      
+                     ),
+                     onChanged: (String value){
+                            
+                     },
+                     validator: (value) {
+                       return value!.isEmpty ? 'Please Enter Username or Email' : null;
+                     },
+                     
+                    ),
                           SizedBox(height: 8,),
                     Column(
                          mainAxisAlignment: MainAxisAlignment.end,
                          crossAxisAlignment: CrossAxisAlignment.end,
                          children: [
-                           InkWell(
-                  child:Text("Forget Password", style: TextStyle(color: Colors.red, fontSize: 18, fontWeight: FontWeight.bold,),),
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => ForgetpassPage(),));
-                    },
-                ),   
+                          // InkWell(
+                          //   onTap: () {
+                          //       Text("Forget Password", style: TextStyle(color: Colors.red, fontSize: 18, fontWeight: FontWeight.bold),);
+                          //   },
+                          // )
+                          
+                               Text("By clicking the Register button, you agree to the public offer", style: TextStyle(color: Colors.red, fontSize: 15, fontWeight: FontWeight.bold,),)
 
                          ],
                     ),
                      SizedBox(height: 35,),
-                    MaterialButton(onPressed: (){
-                       Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(),));
-                    },
-                    minWidth: double.infinity, 
-                         child: 
-                         Text("Login",style: TextStyle(fontSize: 15, fontFamily: "Montserrat", fontWeight: FontWeight.bold),),
+                    MaterialButton(onPressed: (){},
+                    minWidth: double.infinity,
+                         child: Text("Create Account",style: TextStyle(fontSize: 15, fontFamily: "Montserrat", fontWeight: FontWeight.bold),),
                          color: Colors.red,
                          height: 50,
                          textColor: Colors.white,
@@ -119,9 +131,9 @@ class LoginPage extends StatelessWidget {
                
               children: [ 
                 InkWell(
-                  child:Text("Create An Account: Signup",style: TextStyle(fontSize: 16, fontFamily: "Montserrat", fontWeight: FontWeight.bold, color: Colors.black),),
+                  child:Text("I Already have an Account : Login",style: TextStyle(fontSize: 16, fontFamily: "Montserrat", fontWeight: FontWeight.bold, color: Colors.black),),
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => CreateUserPage(),));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage(),));
                     },
                 ),               
               ],
