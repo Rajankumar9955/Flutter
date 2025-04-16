@@ -2,9 +2,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:pro1/Task/CreateUser_page.dart';
-import 'package:pro1/Task/ForgetPass_Page.dart';
-import 'package:pro1/Task/Home_Page.dart';
+import 'package:pro1/Task/LoginSection/ForgetPass_Page.dart';
+import 'package:pro1/Task/LoginSection/CreateUser_page.dart';
+// import 'package:pro1/Task/LoginSection/ForgetPass_Page.dart';
+import 'package:pro1/Task/GetStarted/GetStarted_page.dart';
 import 'package:pro1/Task/Task.dart';
 
 class LoginPage extends StatelessWidget {
@@ -72,7 +73,7 @@ class LoginPage extends StatelessWidget {
                     ),
                      SizedBox(height: 35,),
                     MaterialButton(onPressed: (){
-                       Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(),));
+                       Navigator.push(context, MaterialPageRoute(builder: (context) => GetstartedPage(),));
                     },
                     minWidth: double.infinity, 
                          child: 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:pro1/3rd%20day/product_detail_page.dart';
-import 'package:pro1/Task/Login_Page.dart';
-import 'package:pro1/Task/ProDetailsModel.dart';
+import 'package:pro1/Task/LoginSection/Login_Page.dart';
+import 'package:pro1/Task/Models/ProDetailsModel.dart';
 
 class TaskBySir extends StatefulWidget {
      ///////////
