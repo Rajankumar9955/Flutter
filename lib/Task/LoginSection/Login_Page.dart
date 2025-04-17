@@ -100,7 +100,7 @@ class LoginPage extends StatelessWidget {
                           height: 55,
                           width:  55,
                           decoration: BoxDecoration(border: Border.all(color: const Color.fromARGB(255, 234, 21, 21)), borderRadius: BorderRadius.circular(50)),
-                          child: Image.asset("assets/googleImage.jpeg", height: 50, width: 50, ),
+                          child: Image.asset("assets/googleImage.jpeg", height: 50, width: 50, fit: BoxFit.cover),
                   ),Container(
                           height: 55,
                           width:  55,

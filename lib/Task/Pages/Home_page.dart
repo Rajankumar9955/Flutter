@@ -39,15 +39,12 @@ static final List<Widget> _screen=[
         actions: [
           IconButton(onPressed: (){
 
-          }, icon: Icon(Icons.admin_panel_settings))
+          }, icon: Icon(Icons.admin_panel_settings)),
         ],
+
+        
        ),
-       
-
-
        body: _screen[_selecteIndex],
-           
-
 
     bottomNavigationBar: BottomAppBar(
       child: Row(
