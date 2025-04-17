@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pro1/Task/Pages/NavbarSlider_page.dart';//////////////////////////
 
 class TaskHomePage extends StatefulWidget {
   const TaskHomePage({super.key});
@@ -10,6 +11,7 @@ class TaskHomePage extends StatefulWidget {
 
 class _TaskHomePageState extends State<TaskHomePage> {
   int _selecteIndex=0;
+  
 
 static final List<Widget> _screen=[
   Container(),
@@ -27,26 +29,20 @@ static final List<Widget> _screen=[
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
+      drawer: NavbarSlider(),
+      appBar: AppBar(
         title: Text("Stylish", style: TextStyle(
           fontSize: 25, fontFamily: "monserrat",fontWeight: FontWeight.bold, color:Colors.cyan
         ),),
         centerTitle: true,
-        actions: [  
-          IconButton(onPressed: (){
-             ///////////////////////////////////////////////////////
-          }, icon: Icon(Icons.admin_panel_settings_sharp)),
-        ],
         backgroundColor: Colors.white,
-        leading: IconButton(onPressed: (){
-          //////////////////////////////
-        },
-       icon: IconButton(onPressed: (){
-//////////////////////////////////////////////////
-       }, icon: Icon(Icons.menu),
+        actions: [
+          IconButton(onPressed: (){
+
+          }, icon: Icon(Icons.admin_panel_settings))
+        ],
        ),
-       ),
-       ),
+       
 
 
        body: _screen[_selecteIndex],

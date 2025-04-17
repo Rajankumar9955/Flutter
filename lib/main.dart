@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pro1/Task/Pages/NavbarSlider_page.dart';
 // import 'package:pro1/3rd%20day/Layout_widget.dart';
 // import 'package:pro1/4th%20day/Ecommerce_Layout.dart';
 // import 'package:pro1/2nd%20day/secondDay.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
       // home:HomePage(),
       //  home: ProductPage(),
       home: TaskBySir(),
+      // :NavbarSlider(),
        
  
           );
