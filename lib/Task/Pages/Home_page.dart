@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pro1/Task/Components/HomeContent_page.dart';
+import 'package:pro1/Task/Components/SearchSection.dart';
+import 'package:pro1/Task/Components/Wishlist.dart';
 import 'package:pro1/Task/Pages/NavbarSlider_page.dart';//////////////////////////
 
 class TaskHomePage extends StatefulWidget {
@@ -12,6 +15,7 @@ class TaskHomePage extends StatefulWidget {
 class _TaskHomePageState extends State<TaskHomePage> {
   int _selecteIndex=0;
   
+    
 
 static final List<Widget> _screen=[
   Container(),
@@ -44,8 +48,17 @@ static final List<Widget> _screen=[
 
         
        ),
-       body: _screen[_selecteIndex],
+      //  body: _screen[_selecteIndex],
 
+      body:SearchSection(),
+      // body:WishList(),
+      
+
+
+
+
+       //BottomButton
+// //////////////////////////////////////////////////////
     bottomNavigationBar: BottomAppBar(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

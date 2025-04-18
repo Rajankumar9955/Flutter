@@ -6,7 +6,16 @@ import 'package:pro1/Task/LoginSection/Login_Page.dart';
 import 'package:pro1/Task/Task.dart';
 
 class CreateUserPage extends StatelessWidget {
-  const CreateUserPage({super.key});
+   CreateUserPage({super.key});
+
+  TextEditingController userCotroller=TextEditingController();
+  TextEditingController emailController=TextEditingController();
+  TextEditingController mobileController = TextEditingController();
+  TextEditingController dobController = TextEditingController();
+  TextEditingController termsController =  TextEditingController();
+  TextEditingController passwordController=TextEditingController();
+  
+  get value => null;
 
   @override
   Widget build(BuildContext context) {
@@ -32,22 +41,77 @@ class CreateUserPage extends StatelessWidget {
                     ),
                     SizedBox(height: 34,),
                     TextFormField(
+                      controller: userCotroller,
                      decoration: InputDecoration(
-                      hintText: "Username or Email",
-                      prefixIcon: Icon(Icons.email),
+                      hintText: "Username",
+                      prefixIcon: Icon(Icons.verified_user),
                       border: OutlineInputBorder(),
-                      
                      ),
                      onChanged: (String value){
                             
                      },
                      validator: (value) {
-                       return value!.isEmpty ? 'Please Enter Username or Email' : null;
+                       return value!.isEmpty ? 'Please Enter Username' : null;
+                     },
+                    ),
+                     TextFormField(
+                      controller: emailController,
+                      decoration: InputDecoration(
+                      hintText: "Email",
+                      prefixIcon: Icon(Icons.email),
+                      border: OutlineInputBorder(),
+                     ),
+                     onChanged: (String value){
+                            
+                     },
+                     validator: (value) {
+                       return value!.isEmpty ? 'Please Enter Email' : null;
                      },
                      
                     ),
-                    SizedBox(height: 28,),
+                     TextFormField(
+                      controller: mobileController,
+                      decoration: InputDecoration(
+                      hintText: "Mobile Number",
+                      prefixIcon: Icon(Icons.phone),
+                      border: OutlineInputBorder(),
+                     ),
+                     onChanged: (String value){
+                            
+                     },
+                     validator: (value) {
+                       return value!.isEmpty ? 'Please Enter Mobile Number' : null;
+                     },
+                     
+                    ),
+                       TextFormField(
+                        controller: dobController,
+                      decoration: InputDecoration(
+                      hintText: "DOB",
+                      prefixIcon: Icon(Icons.email),
+                      border: OutlineInputBorder(),
+                     ),
+                     onChanged: (String value){
+                            
+                     },
+                     validator: (value) {
+                       return value!.isEmpty ? 'Please Enter DOB' : null;
+                     },
+                     
+                    ),
+                   
+                  // Checkbox(
+                  //       tristate: true, // Example with tristate
+                  //       value: value,
+                  //       onChanged: (bool? newValue) {
+                  //         setState(() {
+                  //           value = newValue;
+                  //         });
+                  //       },),
+                    
+                    // SizedBox(height: 28,),
                     TextFormField(
+                      controller: passwordController,
                              decoration: InputDecoration(
                               hintText: "Password",
                               prefixIcon: Icon(Icons.password), 
@@ -55,21 +119,7 @@ class CreateUserPage extends StatelessWidget {
                              ),       
                     ),
                      SizedBox(height: 34,),
-                    TextFormField(
-                     decoration: InputDecoration(
-                      hintText: "Confirm Password",
-                      prefixIcon: Icon(Icons.password),
-                      border: OutlineInputBorder(),
-                      
-                     ),
-                     onChanged: (String value){
-                            
-                     },
-                     validator: (value) {
-                       return value!.isEmpty ? 'Please Enter Username or Email' : null;
-                     },
-                     
-                    ),
+                    
                           SizedBox(height: 8,),
                     Column(
                          mainAxisAlignment: MainAxisAlignment.end,
