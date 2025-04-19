@@ -50,9 +50,9 @@ static final List<Widget> _screen=[
        ),
       //  body: _screen[_selecteIndex],
 
-      body:SearchSection(),
+      // body:SearchSection(),
       // body:WishList(),
-      
+      body: HomeContent_page(),
 
 
 

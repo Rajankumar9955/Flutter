@@ -18,7 +18,7 @@ class GetstartedPage extends StatelessWidget {
             ),
           ),
 
-          // Gradient overlay (optional, to enhance text readability)
+      
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(

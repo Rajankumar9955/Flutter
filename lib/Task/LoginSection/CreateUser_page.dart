@@ -1,6 +1,5 @@
 
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:pro1/Task/LoginSection/Login_Page.dart';
 import 'package:pro1/Task/Task.dart';
@@ -14,8 +13,7 @@ class CreateUserPage extends StatelessWidget {
   TextEditingController dobController = TextEditingController();
   TextEditingController termsController =  TextEditingController();
   TextEditingController passwordController=TextEditingController();
-  
-  get value => null;
+  bool selected = true;
 
   @override
   Widget build(BuildContext context) {
@@ -88,27 +86,17 @@ class CreateUserPage extends StatelessWidget {
                         controller: dobController,
                       decoration: InputDecoration(
                       hintText: "DOB",
-                      prefixIcon: Icon(Icons.email),
+                      prefixIcon: Icon(Icons.calendar_today),
                       border: OutlineInputBorder(),
                      ),
-                     onChanged: (String value){
-                            
-                     },
-                     validator: (value) {
-                       return value!.isEmpty ? 'Please Enter DOB' : null;
-                     },
-                     
+                      readOnly: true,
+                      onTap: () {
+                        _selectDate();
+                      },
                     ),
                    
-                  // Checkbox(
-                  //       tristate: true, // Example with tristate
-                  //       value: value,
-                  //       onChanged: (bool? newValue) {
-                  //         setState(() {
-                  //           value = newValue;
-                  //         });
-                  //       },),
-                    
+                  
+
                     // SizedBox(height: 28,),
                     TextFormField(
                       controller: passwordController,
@@ -118,9 +106,20 @@ class CreateUserPage extends StatelessWidget {
                               border: OutlineInputBorder(),                             
                              ),       
                     ),
-                     SizedBox(height: 34,),
+                    //  SizedBox(height: 34,),
                     
-                          SizedBox(height: 8,),
+                    //       SizedBox(height: 8,),
+                      Row(
+                        children: [
+                            Container(
+                                     child: Checkbox(value: selected, 
+                                           onChanged: (value){
+                                                   selected=value!; 
+                                           },),
+                            ),
+                             Text("Please check the Box"),  
+                        ],
+                    ),
                     Column(
                          mainAxisAlignment: MainAxisAlignment.end,
                          crossAxisAlignment: CrossAxisAlignment.end,
@@ -196,4 +195,23 @@ class CreateUserPage extends StatelessWidget {
         ) ,
     );
   }
+
+
+
+
+  // ========================================================================
+  Future<void> _selectDate() async {
+     var context;
+     DateTime ? _picked= await showDatePicker(
+      context: context, 
+      initialDate: DateTime.now(),
+     firstDate: DateTime(1900), 
+     lastDate: DateTime(2100),
+     );
+     if(_picked!=null)
+     {
+       dobController.text=_picked.toString().split(" ")[0];
+     }
+  }
+
 }
