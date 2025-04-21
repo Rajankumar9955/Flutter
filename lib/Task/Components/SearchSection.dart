@@ -33,28 +33,28 @@ class _SearchSectionState extends State<SearchSection> {
               ),
             ),
           ),
-          Container(
-            padding: EdgeInsets.all(5.00),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(child: Text("52,082+ Items"),),
-                   Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,   
-                      children: [
-                        IconButton(onPressed: (){
+          // Container(
+          //   padding: EdgeInsets.all(5.00),
+          //     child: Row(
+          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //       crossAxisAlignment: CrossAxisAlignment.start,
+          //       children: [
+          //         Container(child: Text("52,082+ Items"),),
+          //          Row(
+          //             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //             crossAxisAlignment: CrossAxisAlignment.start,   
+          //             children: [
+          //               IconButton(onPressed: (){
                           
-                        }, icon: Icon(Icons.sort),),
-                        IconButton(onPressed: (){
+          //               }, icon: Icon(Icons.sort),),
+          //               IconButton(onPressed: (){
                              
-                        }, icon: Icon(Icons.filter))
-                      ],
-                   )
-                ],
-              ),
-          )
+          //               }, icon: Icon(Icons.filter))
+          //             ],
+          //          )
+          //       ],
+          //     ),
+          // )
         ],
       ),
     );

@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pro1/Task/Components/Cart_page.dart';
 import 'package:pro1/Task/Components/HomeContent_page.dart';
 import 'package:pro1/Task/Components/SearchSection.dart';
+import 'package:pro1/Task/Components/Search_page.dart';
+import 'package:pro1/Task/Components/Settings.dart';
 import 'package:pro1/Task/Components/Wishlist.dart';
 import 'package:pro1/Task/Pages/NavbarSlider_page.dart';//////////////////////////
 
@@ -18,11 +21,17 @@ class _TaskHomePageState extends State<TaskHomePage> {
     
 
 static final List<Widget> _screen=[
-  Container(),
-  Placeholder(),
-  Placeholder(),
-  Placeholder(),
-  Placeholder(),
+  HomeContent_page(),
+  WishList(),
+  Cart(),
+  Search_page(),
+  Settings(),
+
+  // Container(),
+  // Container(),
+  // Container(),
+  // Container(),
+  // Container(),
 ];
 
   void _onItemTapped(int index){
@@ -48,15 +57,12 @@ static final List<Widget> _screen=[
 
         
        ),
-      //  body: _screen[_selecteIndex],
+
+       body: _screen[_selecteIndex],
 
       // body:SearchSection(),
       // body:WishList(),
-      body: HomeContent_page(),
-
-
-
-
+      // body: HomeContent_page(),
        //BottomButton
 // //////////////////////////////////////////////////////
     bottomNavigationBar: BottomAppBar(
