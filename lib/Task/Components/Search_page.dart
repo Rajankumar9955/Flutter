@@ -13,7 +13,7 @@ class _Search_pageState extends State<Search_page> {
     return Scaffold(
       body: Center(
         child: Container(
-          child: Text("Search Page"),
+          child: Text("Search"),
           decoration: BoxDecoration(
             border: Border.all(
               color: Colors.black,

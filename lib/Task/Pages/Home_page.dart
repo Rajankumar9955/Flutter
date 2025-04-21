@@ -26,6 +26,12 @@ static final List<Widget> _screen=[
   Cart(),
   Search_page(),
   Settings(),
+
+  // Container(),
+  // Container(),
+  // Container(),
+  // Container(),
+  // Container(),
 ];
 
   void _onItemTapped(int index){
@@ -51,6 +57,7 @@ static final List<Widget> _screen=[
 
         
        ),
+
        body: _screen[_selecteIndex],
 
       // body:SearchSection(),
