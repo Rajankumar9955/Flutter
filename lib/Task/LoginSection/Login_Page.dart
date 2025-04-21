@@ -118,7 +118,7 @@ class LoginPage extends StatelessWidget {
               SizedBox(height: 35,),
                Column(
                
-              children: [ 
+              children: [  
                 InkWell(
                   child:Text("Create An Account: Signup",style: TextStyle(fontSize: 16, fontFamily: "Montserrat", fontWeight: FontWeight.bold, color: Colors.black),),
                     onTap: () {
