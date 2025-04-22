@@ -114,6 +114,8 @@ return
                 promoBanner(),
                 SizedBox(height: 20,),
                 dealOfTheDayCard(),
+                SizedBox(height: 20,),
+                
 
             ],
           ),
@@ -139,6 +141,10 @@ return
            CollectionsModel(Image: "assets/women.jpeg", Name: "Womens", Description: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit."),
   ];
 }
+
+
+
+
 
   Widget _actionButton(String label, IconData icon) {
     return Container(
