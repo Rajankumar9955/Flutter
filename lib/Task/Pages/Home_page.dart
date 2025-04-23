@@ -21,17 +21,17 @@ class _TaskHomePageState extends State<TaskHomePage> {
     
 
 static final List<Widget> _screen=[
-  // HomeContent_page(),
-  // WishList(),
-  // Cart(),
-  // Search_page(),
-  // Settings(),
+  HomeContent_page(),
+  WishList(),
+  Cart(),
+  Search_page(),
+  Settings(),
 
-  Container(),
-  Container(),
-  Container(),
-  Container(),
-  Container(),
+  // Container(),
+  // Container(),
+  // Container(),
+  // Container(),
+  // Container(),
 ];
 
   void _onItemTapped(int index){
@@ -58,11 +58,11 @@ static final List<Widget> _screen=[
         
        ),
 
-      //  body: _screen[_selecteIndex],
+       body: _screen[_selecteIndex],
 
       // body:SearchSection(),
       // body:WishList(),
-      body: HomeContent_page(),
+      // body: HomeContent_page(),
        //BottomButton
 // //////////////////////////////////////////////////////
     bottomNavigationBar: BottomAppBar(
@@ -92,9 +92,7 @@ static final List<Widget> _screen=[
       ),
     ),
     floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-
-
-
+    
     );
   }
   

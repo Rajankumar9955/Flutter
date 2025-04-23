@@ -23,6 +23,6 @@ class _Search_pageState extends State<Search_page> {
         ),
         
       ),
-    );;
+    );
   }
 }

@@ -1,9 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:pro1/Task/Models/CollectionsModel.dart';
 
 class HomeContent_page extends StatefulWidget {
-    
   const HomeContent_page({super.key});
 
   @override
@@ -11,11 +9,10 @@ class HomeContent_page extends StatefulWidget {
 }
 
 class _HomeContent_pageState extends State<HomeContent_page> {
-    // int products=0;
+  // int products=0;
   @override
   Widget build(BuildContext context) {
-return
-   Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
@@ -23,9 +20,7 @@ return
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
-// Search
-
+              // Search
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 decoration: BoxDecoration(
@@ -55,12 +50,8 @@ return
                 children: [
                   Text(
                     "All Featured",
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
-
 
                   Row(
                     children: [
@@ -73,50 +64,47 @@ return
               ),
               SizedBox(height: 20),
 
-        
-
               SizedBox(
                 height: 100,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: categories.map((category) {
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 16),
-                        child: Column(
-                          children: [
-                            CircleAvatar(
-                              radius: 30,
-                              backgroundImage: AssetImage(category.Image),
-                              child: InkWell(
-                                onTap: () {
-                                  print(category.Name);
-                                },
-                              ),
+                    children:
+                        categories.map((category) {
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 16),
+                            child: Column(
+                              children: [
+                                CircleAvatar(
+                                  radius: 30,
+                                  backgroundImage: AssetImage(category.Image),
+                                  child: InkWell(
+                                    onTap: () {
+                                      print(category.Name);
+                                    },
+                                  ),
+                                ),
+                                SizedBox(height: 6),
+                                Text(
+                                  category.Name,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
                             ),
-                            SizedBox(height: 6),
-                            Text(
-                              category.Name,
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    }).toList(),
+                          );
+                        }).toList(),
                   ),
                 ),
               ),
-             
-             //promoBanner
-                promoBanner(),
-                SizedBox(height: 20,),
-                dealOfTheDayCard(),
-                SizedBox(height: 20,),
-                
 
+              //promoBanner
+              promoBanner(),
+              SizedBox(height: 20),
+              dealOfTheDayCard(),
+              SizedBox(height: 20),
             ],
           ),
         ),
@@ -124,44 +112,89 @@ return
     );
   }
 
-
-  List<CollectionsModel>categories=[
-           CollectionsModel(Image:"assets/beauty.jpg", Name: "Beauty", Description: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",),
-           CollectionsModel(Image: "assets/fashion.jpg", Name: "Fashion", Description: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit."),
-           CollectionsModel(Image: "assets/kids.jpeg", Name: "Kids", Description: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit."),
-           CollectionsModel(Image: "assets/mens.webp", Name: "Mens", Description: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit."),
-           CollectionsModel(Image: "assets/women.jpeg", Name: "Womens", Description: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit."),
+  List<CollectionsModel> categories = [
+    CollectionsModel(
+      Image: "assets/beauty.jpg",
+      Name: "Beauty",
+      Description:
+          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
+    ),
+    CollectionsModel(
+      Image: "assets/fashion.jpg",
+      Name: "Fashion",
+      Description:
+          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
+    ),
+    CollectionsModel(
+      Image: "assets/kids.jpeg",
+      Name: "Kids",
+      Description:
+          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
+    ),
+    CollectionsModel(
+      Image: "assets/mens.webp",
+      Name: "Mens",
+      Description:
+          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
+    ),
+    CollectionsModel(
+      Image: "assets/women.jpeg",
+      Name: "Womens",
+      Description:
+          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
+    ),
   ];
 
-  List<CollectionsModel>products=[
-              CollectionsModel(Image:"assets/beauty.jpg", Name: "Beauty", Description: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",),
-           CollectionsModel(Image: "assets/fashion.jpg", Name: "Fashion", Description: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit."),
-           CollectionsModel(Image: "assets/kids.jpeg", Name: "Kids", Description: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit."),
-           CollectionsModel(Image: "assets/mens.webp", Name: "Mens", Description: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit."),
-           CollectionsModel(Image: "assets/women.jpeg", Name: "Womens", Description: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit."),
+  List<CollectionsModel> products = [
+    CollectionsModel(
+      Image: "assets/beauty.jpg",
+      Name: "Beauty",
+      Description:
+          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
+    ),
+    CollectionsModel(
+      Image: "assets/fashion.jpg",
+      Name: "Fashion",
+      Description:
+          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
+    ),
+    CollectionsModel(
+      Image: "assets/kids.jpeg",
+      Name: "Kids",
+      Description:
+          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
+    ),
+    CollectionsModel(
+      Image: "assets/mens.webp",
+      Name: "Mens",
+      Description:
+          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
+    ),
+    CollectionsModel(
+      Image: "assets/women.jpeg",
+      Name: "Womens",
+      Description:
+          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
+    ),
   ];
 }
 
-
-
-
-
-  Widget _actionButton(String label, IconData icon) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      decoration: BoxDecoration(
-        color: Colors.grey.shade100,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Row(
-        children: [
-          Text(label, style: TextStyle(fontWeight: FontWeight.w500,)),
-          SizedBox(width: 4),
-          Icon(icon, size: 18),
-        ],
-      ),
-    );
-  }
+Widget _actionButton(String label, IconData icon) {
+  return Container(
+    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+    decoration: BoxDecoration(
+      color: Colors.grey.shade100,
+      borderRadius: BorderRadius.circular(12),
+    ),
+    child: Row(
+      children: [
+        Text(label, style: TextStyle(fontWeight: FontWeight.w500)),
+        SizedBox(width: 4),
+        Icon(icon, size: 18),
+      ],
+    ),
+  );
+}
 
 Widget promoBanner() {
   return Container(
@@ -217,11 +250,10 @@ Widget promoBanner() {
   );
 }
 
-
 Widget dealOfTheDayCard() {
   return Container(
     // margin: EdgeInsets.symmetric(horizontal: 1),
-    padding: EdgeInsets.all(16),
+    padding: EdgeInsets.all(8),
     decoration: BoxDecoration(
       color: Color(0xFF3B88FD),
       borderRadius: BorderRadius.circular(16),
@@ -229,31 +261,43 @@ Widget dealOfTheDayCard() {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Deal of the Day",
-              style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8),
-            Row(
-              children: [
-                Icon(Icons.timer_outlined, color: Colors.white, size: 18),
-                SizedBox(width: 6),
-                Text(
-                  "22h 55m 20s remaining",
-                  style: TextStyle(color: Colors.white, fontSize: 14),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Deal of the Day",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
-              ],
-            ),
-          ],
+              ),
+              SizedBox(height: 8),
+              Row(
+                children: [
+                  Icon(Icons.timer_outlined, color: Colors.white, size: 18),
+                  SizedBox(width: 6),
+                  Text(
+                    "22h 55m 20s remaining",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontFamily: "Montserrat",
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
         OutlinedButton(
           style: OutlinedButton.styleFrom(
             side: BorderSide(color: Colors.white),
             foregroundColor: Colors.white,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
           ),
           onPressed: () {
             // Handle "View all"
