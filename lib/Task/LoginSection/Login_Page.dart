@@ -1,138 +1,213 @@
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:pro1/Task/LoginSection/ForgetPass_Page.dart';
 import 'package:pro1/Task/LoginSection/CreateUser_page.dart';
 import 'package:pro1/Task/GetStarted/GetStarted_page.dart';
+import 'package:pro1/Task/LoginSection/services/auth_services.dart';
 import 'package:pro1/Task/Task.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
- 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController emailCotroller = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:SafeArea(
+      body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-          child: Column(
-            children: [
-              SizedBox(height: 16,width: 18,),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: 16, width: 18),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
                       "Welcome\nBack!",
                       style: TextStyle(
-                        fontSize: 30, color: Colors.black,
+                        fontSize: 30,
+                        color: Colors.black,
                         fontFamily: "Montserrat",
                         fontWeight: FontWeight.bold,
                       ),
-                      
                     ),
-                    SizedBox(height: 34,),
+                    SizedBox(height: 34),
                     TextFormField(
-                     decoration: InputDecoration(
-                      hintText: "Username or Email",
-                      prefixIcon: Icon(Icons.email),
-                      border: OutlineInputBorder(),
-                      
-                     ),
-                     onChanged: (String value){
-                            
-                     },
-                     validator: (value) {
-                       return value!.isEmpty ? 'Please Enter Username or Email' : null;
-                     },
-                     
+                      controller: emailCotroller,
+                      decoration: InputDecoration(
+                        hintText: "User Email",
+                        prefixIcon: Icon(Icons.email),
+                        border: OutlineInputBorder(),
+                      ),
+                      onChanged: (String value) {},
+                      validator: (value) {
+                        return value!.isEmpty
+                            ? 'Please Enter Username or Email'
+                            : null;
+                      },
                     ),
-                    SizedBox(height: 28,),
+                    SizedBox(height: 28),
                     TextFormField(
-                             decoration: InputDecoration(
-                              hintText: "Password",
-                              prefixIcon: Icon(Icons.password), 
-                              border: OutlineInputBorder(),                             
-                             ),       
+                      controller: passwordController,
+                      decoration: InputDecoration(
+                        hintText: "Password",
+                        prefixIcon: Icon(Icons.password),
+                        border: OutlineInputBorder(),
+                      ),
                     ),
-                          SizedBox(height: 8,),
-                    Column(
-                         mainAxisAlignment: MainAxisAlignment.end,
-                         crossAxisAlignment: CrossAxisAlignment.end,
-                         children: [
-                           InkWell(
-                  child:Text("Forget Password", style: TextStyle(color: Colors.red, fontSize: 18, fontWeight: FontWeight.bold,),),
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => ForgetpassPage(),));
-                    },
-                ),   
-
-                         ],
+                    SizedBox(height: 8),
+                    Container(
+                      alignment: Alignment.centerRight,
+                      child: InkWell(
+                        child: Text(
+                          "Forget Password?",
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ForgetpassPage(),
+                            ),
+                          );
+                        },
+                      ),
                     ),
-                     SizedBox(height: 35,),
-                    MaterialButton(onPressed: (){
-                       Navigator.push(context, MaterialPageRoute(builder: (context) => GetstartedPage(),));
-                    },
-                    minWidth: double.infinity, 
-                         child: 
-                         Text("Login",style: TextStyle(fontSize: 15, fontFamily: "Montserrat", fontWeight: FontWeight.bold),),
-                         color: Colors.red,
-                         height: 50,
-                         textColor: Colors.white,
+                    SizedBox(height: 25),
+                    MaterialButton(
+                      onPressed: () async {
+                        String status = '';
+                        status = await AuthServices().UserLogin(
+                          emailCotroller.text,
+                          passwordController.text,
+                        );
+                        if (status == "success") {
+                          ScaffoldMessenger.of(
+                            context,
+                          ).showSnackBar(SnackBar(content: Text("login")));
+                        }
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => GetstartedPage(),
+                          ),
+                          (route) => true,
+                        );
+                      },
+                      minWidth: double.infinity,
+                      child: Text(
+                        "Login",
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontFamily: "Montserrat",
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      color: Colors.red,
+                      height: 50,
+                      textColor: Colors.white,
                     ),
                   ],
-              ),  
-              SizedBox(height: 45,),
-             Column(
-              children: [
-                Text("- OR Continue With -",style: TextStyle(fontSize: 16, fontFamily: "Montserrat", fontWeight: FontWeight.bold, color: Colors.black),),
-              ],
-             ),
-             SizedBox(height: 24,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                // crossAxisAlignment: CrossAxisAlignment.start,
+                ),
+                SizedBox(height: 45),
+                Column(
+                  children: [
+                    Text(
+                      "- OR Continue With -",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontFamily: "Montserrat",
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 24),
 
-                children: [
-                  Container(
-                          height: 55,
-                          width:  55,
-                          decoration: BoxDecoration(border: Border.all(color: const Color.fromARGB(255, 234, 21, 21)), borderRadius: BorderRadius.circular(50)),
-                          child: Image.asset("assets/googleImage.jpeg", height: 50, width: 50, fit: BoxFit.cover),
-                  ),Container(
-                          height: 55,
-                          width:  55,
-                          decoration: BoxDecoration(border: Border.all(color: const Color.fromARGB(255, 234, 20, 20)), borderRadius: BorderRadius.circular(50)),
-                          child: Image.asset("assets/applelogo.jpeg", height: 50,width: 50,),
-                  ),Container(
-                          height: 55,
-                          width:  55,
-                          decoration: BoxDecoration(border: Border.all(color: const Color.fromARGB(255, 240, 21, 21)), borderRadius: BorderRadius.circular(50)),
-                          child: Image.asset("assets/facebook.jpeg", height: 50, width: 50,),
-                  )
-                ],
-                
-              ),
-              SizedBox(height: 35,),
-               Column(
-               
-              children: [  
-                InkWell(
-                  child:Text("Create An Account: Signup",style: TextStyle(fontSize: 16, fontFamily: "Montserrat", fontWeight: FontWeight.bold, color: Colors.black),),
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => CreateUserPage(),));
-                    },
-                ),               
-              ],
-             ),
-              
-            ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CustomLogoWidget(
+                      logo: "assets/googleImage.jpeg",
+                      onTap: () {},
+                    ),
+                    CustomLogoWidget(
+                      logo: "assets/applelogo.jpeg",
+                      onTap: () {},
+                    ),
+                    CustomLogoWidget(
+                      logo: "assets/facebook.jpeg",
+                      onTap: () {},
+                    ),
+                  ],
+                ),
 
+                SizedBox(height: 35),
+                Column(
+                  children: [
+                    InkWell(
+                      child: Text(
+                        "Create An Account: Signup",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: "Montserrat",
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CreateUserPage(),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
-        ) ,
+      ),
+    );
+  }
+}
+
+class CustomLogoWidget extends StatelessWidget {
+  final String logo;
+  final VoidCallback onTap;
+  const CustomLogoWidget({super.key, required this.logo, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        height: 55,
+        width: 55,
+        decoration: BoxDecoration(
+          image: DecorationImage(image: AssetImage(logo)),
+          border: Border.all(color: const Color.fromARGB(255, 234, 21, 21)),
+          borderRadius: BorderRadius.circular(50),
+        ),
+        // child: Image.asset("assets/googleImage.jpeg", height: 50, width: 50, fit: BoxFit.cover),
+      ),
     );
   }
 }

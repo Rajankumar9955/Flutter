@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:pro1/Task/Pages/Home_page.dart';
 import 'package:pro1/Task/Pages/NavbarSlider_page.dart';
 // import 'package:pro1/3rd%20day/Layout_widget.dart';
 // import 'package:pro1/4th%20day/Ecommerce_Layout.dart';
 // import 'package:pro1/2nd%20day/secondDay.dart';
 import 'package:pro1/Task/Task.dart';
+import 'package:pro1/data/session_manager.dart';
 
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await SessionManager().init();
   runApp(const MyApp());
 }
 
@@ -17,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Stylish',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
@@ -39,7 +43,7 @@ class MyApp extends StatelessWidget {
       ),
       // home:HomePage(),
       //  home: ProductPage(),
-      home: TaskBySir(),
+      home:SessionManager.getToken()!=null? TaskHomePage(): TaskBySir(),
       // :NavbarSlider(),
        
  
