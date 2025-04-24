@@ -14,6 +14,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+   final _formKey = GlobalKey<FormState>();
+
   TextEditingController emailCotroller = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -21,6 +23,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        // body:Form(child: child)
+        // key: _formKey,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
           child: SingleChildScrollView(
@@ -50,9 +54,10 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       onChanged: (String value) {},
                       validator: (value) {
-                        return value!.isEmpty
-                            ? 'Please Enter Username or Email'
-                            : null;
+                         if(value==null || value.isEmpty){
+                           return 'Please Enter UserEmail';
+                         }
+                         return null;
                       },
                     ),
                     SizedBox(height: 28),
@@ -63,6 +68,13 @@ class _LoginPageState extends State<LoginPage> {
                         prefixIcon: Icon(Icons.password),
                         border: OutlineInputBorder(),
                       ),
+                      onChanged: (String value) {},
+                      validator: (value) {
+                         if(value==null || value.isEmpty){
+                           return 'Please Enter Your Password';
+                         }
+                         return null;
+                      },
                     ),
                     SizedBox(height: 8),
                     Container(
@@ -94,6 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                           emailCotroller.text,
                           passwordController.text,
                         );
+                        // if(_formKey.currentContext!.validate()){}
                         if (status == "success") {
                           ScaffoldMessenger.of(
                             context,

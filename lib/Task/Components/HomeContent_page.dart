@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pro1/2nd%20day/model/product_model.dart';
 import 'package:pro1/Task/Models/CollectionsModel.dart';
+import 'package:pro1/Task/Models/PromoBanner_Model.dart';
 
 class HomeContent_page extends StatefulWidget {
   const HomeContent_page({super.key});
@@ -9,7 +11,10 @@ class HomeContent_page extends StatefulWidget {
 }
 
 class _HomeContent_pageState extends State<HomeContent_page> {
-  // int products=0;
+ 
+  // PageController pageController = PageController();
+  // int currentPage = 0;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,13 +106,55 @@ class _HomeContent_pageState extends State<HomeContent_page> {
               ),
 
               //promoBanner
+               
+              //    Expanded(
+              //   child: PageView.builder(
+              //     controller: pageController,
+              //     onPageChanged: (value) {
+              //       currentPage = value;
+              //       setState(() {
+              //         currentPage = value;
+              //       });
+              //     },
+              //     // itemCount: products.length,
+              //     itemBuilder: (context, index) {
+              //       return CustomSliderWidget(
+              //         ProBanner: PromoBanner[index],
+              //       );
+              //     },
+              //   ),
+              // ),
+              // Row(
+              //   children: [
+              //     Expanded(
+              //       child: Row(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: List.generate(
+              //           3,
+              //           (index) => Container(
+              //             margin: EdgeInsets.only(left: 5),
+              //             decoration: BoxDecoration(
+              //               border: Border.all(
+              //                 color: const Color.fromARGB(255, 16, 15, 15),
+              //               ),
+              //               borderRadius: BorderRadius.circular(10),
+              //               color: Colors.black,
+              //             ),
+              //             height: 12,
+              //             width: currentPage == index ? 30 : 10,
+              //           ),
+              //         ),
+              //       ),
+                    
+              //     ),
               promoBanner(),
               SizedBox(height: 20),
               dealOfTheDayCard(),
               SizedBox(height: 20),
             ],
           ),
-        ),
+            
+        )
       ),
     );
   }
@@ -177,6 +224,10 @@ class _HomeContent_pageState extends State<HomeContent_page> {
           "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
     ),
   ];
+
+  // List<PromobannerModel>PromoBanner=[
+  //   PromobannerModel(Image: "assets/ProBanner1.png", Offer: "50-40% ", Description: "Now in (Products)\n", ShopNow: "Show Now", Colors:"All Colors")
+  // ];
 }
 
 Widget _actionButton(String label, IconData icon) {
@@ -195,6 +246,68 @@ Widget _actionButton(String label, IconData icon) {
     ),
   );
 }
+
+
+// class CustomSliderWidget extends StatelessWidget {
+//        final PromobannerModel ProBanner;
+//   const CustomSliderWidget({super.key, required this.ProBanner}); //required this.product
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//     width: double.infinity,
+//     height: 180,
+//     decoration: BoxDecoration(
+//       borderRadius: BorderRadius.circular(16),
+//       image: DecorationImage(
+//         image: AssetImage(ProBanner.Image), // image 
+//         fit: BoxFit.cover,
+//       ),
+//     ),
+//     padding: const EdgeInsets.all(16),
+//     child: Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       children: [
+//         Text(
+//           ProBanner.Offer, //////////////////
+//           style: TextStyle(
+//             fontSize: 22,
+//             fontWeight: FontWeight.bold,
+//             color: Colors.white,
+//           ),
+//         ),
+//         SizedBox(height: 8),
+//         Text(
+//               ProBanner.Description,
+//           style: TextStyle(color: Colors.white, fontSize: 14),
+//         ),
+//         Text(
+//           ProBanner.Colors,
+//           style: TextStyle(color: Colors.white, fontSize: 14),
+//         ),
+//         SizedBox(height: 12),
+//         Container(
+//           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+//           decoration: BoxDecoration(
+//             color: Colors.white,
+//             borderRadius: BorderRadius.circular(30),
+//           ),
+//           child: Row(
+//             mainAxisSize: MainAxisSize.min,
+//             children: [
+//               Text("Shop Now", style: TextStyle(fontWeight: FontWeight.bold)),
+//               SizedBox(width: 6),
+//               Icon(Icons.arrow_forward, size: 16),
+//             ],
+//           ),
+//         ),
+//       ],
+//     ),
+//   );
+    
+//   }
+// }
 
 Widget promoBanner() {
   return Container(
