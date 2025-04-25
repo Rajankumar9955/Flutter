@@ -17,7 +17,7 @@ class _WishListState extends State<WishList> {
   @override
   bool isLoading = false;
   Future<List<ProductsModel>> getProduct() async {
-    print("enter");
+    print("All Products");
     try {
       setState(() {
         isLoading = true;
@@ -93,7 +93,7 @@ class _WishListState extends State<WishList> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "${products.length}+ Items",
+                          "${categories.length}+ Items",
                           style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
@@ -171,20 +171,23 @@ class _WishListState extends State<WishList> {
                                 Expanded(
                                   child:
                                       product.productVideo == null
-                                          ? Container(color: Colors.red)
-                                          : Image.asset(
-                                           "assets/beauty.jpg",
+                                          ? Container(color: const Color.fromARGB(255, 185, 52, 42))
+                                          : Image.network(
+                                           product.images![0].fullUrl!+"/small/"+product.images![0].image!,
                                             fit: BoxFit.cover,
                                           ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(product.productName ?? "N/A"),
+                                  
+                                   
                                 ),
-
-                                // SizedBox(
-                                //   child: Text(product.Description),
-                                // )
+                                Container(child:Text("Price ₹"+product.productPrice.toString())),
+                                Container(child:Text(product.productColor.toString())),
+                                Container(child:Text(product.productDiscount.toString())),
+                                Container(child:Text(product.productVideo.toString())),
+                                Container(child:Text(product.productWeight.toString())),
                               ],
                             ),
                           );
@@ -220,39 +223,6 @@ class _WishListState extends State<WishList> {
   }
 
   List<CollectionsModel> categories = [
-    CollectionsModel(
-      Image: "assets/beauty.jpg",
-      Name: "Beauty",
-      Description:
-          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
-    ),
-    CollectionsModel(
-      Image: "assets/fashion.jpg",
-      Name: "Fashion",
-      Description:
-          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
-    ),
-    CollectionsModel(
-      Image: "assets/kids.jpeg",
-      Name: "Kids",
-      Description:
-          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
-    ),
-    CollectionsModel(
-      Image: "assets/mens.webp",
-      Name: "Mens",
-      Description:
-          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
-    ),
-    CollectionsModel(
-      Image: "assets/women.jpeg",
-      Name: "Womens",
-      Description:
-          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
-    ),
-  ];
-
-  List<CollectionsModel> products = [
     CollectionsModel(
       Image: "assets/beauty.jpg",
       Name: "Beauty",

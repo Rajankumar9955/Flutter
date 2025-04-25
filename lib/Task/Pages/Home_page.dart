@@ -26,12 +26,6 @@ static final List<Widget> _screen=[
   Cart(),
   Search_page(),
   Settings(),
-
-  // Container(),
-  // Container(),
-  // Container(),
-  // Container(),
-  // Container(),
 ];
 
   void _onItemTapped(int index){

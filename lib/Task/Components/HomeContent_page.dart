@@ -316,7 +316,7 @@ Widget promoBanner() {
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(16),
       image: DecorationImage(
-        image: AssetImage("assets/ProBanner1.png"), // use your image here
+        image: AssetImage("assets/ProBanner1.png"), // image
         fit: BoxFit.cover,
       ),
     ),

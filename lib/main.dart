@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pro1/Getx/Views/product_screen.dart';
 import 'package:pro1/Task/Pages/Home_page.dart';
 import 'package:pro1/Task/Pages/NavbarSlider_page.dart';
 // import 'package:pro1/3rd%20day/Layout_widget.dart';
@@ -43,7 +44,9 @@ class MyApp extends StatelessWidget {
       ),
       // home:HomePage(),
       //  home: ProductPage(),
+
       home:SessionManager.getToken()!=null? TaskHomePage(): TaskBySir(),
+        // home: ProdctScreen(),   //GetX state management
       // :NavbarSlider(),
        
  
