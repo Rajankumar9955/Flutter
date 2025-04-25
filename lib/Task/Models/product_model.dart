@@ -248,6 +248,7 @@ class Images {
   int? status;
   String? createdAt;
   String? updatedAt;
+  String? fullUrl;
 
   Images(
       {this.id,
@@ -255,7 +256,8 @@ class Images {
       this.image,
       this.status,
       this.createdAt,
-      this.updatedAt});
+      this.updatedAt,
+      this.fullUrl});
 
   Images.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -264,6 +266,7 @@ class Images {
     status = json['status'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+    fullUrl = json['full_url'];
   }
 
   Map<String, dynamic> toJson() {
@@ -274,6 +277,7 @@ class Images {
     data['status'] = this.status;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
+    data['full_url'] = this.fullUrl;
     return data;
   }
 }

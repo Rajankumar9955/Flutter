@@ -17,7 +17,7 @@ class _WishListState extends State<WishList> {
   @override
   bool isLoading = false;
   Future<List<ProductsModel>> getProduct() async {
-    print("enter");
+    print("All Products");
     try {
       setState(() {
         isLoading = true;
@@ -171,9 +171,9 @@ class _WishListState extends State<WishList> {
                                 Expanded(
                                   child:
                                       product.productVideo == null
-                                          ? Container(color: Colors.red)
-                                          : Image.asset(
-                                           "assets/beauty.jpg",
+                                          ? Container(color: const Color.fromARGB(255, 185, 52, 42))
+                                          : Image.network(
+                                           product.images![0].fullUrl!+"/small/"+product.images![0].image!,
                                             fit: BoxFit.cover,
                                           ),
                                 ),
@@ -183,7 +183,11 @@ class _WishListState extends State<WishList> {
                                   
                                    
                                 ),
-                                Container(child: Image.network(),)
+                                Container(child:Text("Price ₹"+product.productPrice.toString())),
+                                Container(child:Text(product.productColor.toString())),
+                                Container(child:Text(product.productDiscount.toString())),
+                                Container(child:Text(product.productVideo.toString())),
+                                Container(child:Text(product.productWeight.toString())),
                               ],
                             ),
                           );
