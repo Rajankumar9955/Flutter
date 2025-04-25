@@ -45,8 +45,8 @@ class MyApp extends StatelessWidget {
       // home:HomePage(),
       //  home: ProductPage(),
 
-      // home:SessionManager.getToken()!=null? TaskHomePage(): TaskBySir(),
-        home: ProdctScreen(),   //GetX state management
+      home:SessionManager.getToken()!=null? TaskHomePage(): TaskBySir(),
+        // home: ProdctScreen(),   //GetX state management
       // :NavbarSlider(),
        
  

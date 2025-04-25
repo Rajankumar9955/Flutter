@@ -11,13 +11,16 @@ class ProdctScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
           appBar: AppBar(title: Text("All Product List"),
           centerTitle: true,
                 actions: [
                   Row(
                     children: [
                       ElevatedButton.icon(onPressed: (){}, icon: Icon(Icons.shopping_cart),
-                       label: Text('0'),
+                       label:GetX<ProductControllers>(builder :(controller)=>
+                       Text(productController.count.toString()),)  
+                        
                       )
                     ],
                   )
@@ -25,7 +28,8 @@ class ProdctScreen extends StatelessWidget {
           ),
           body: Column(children: [
             Expanded(
-              child: ListView.builder(itemBuilder: (context, index){
+              child: GetBuilder<ProductControllers>(builder: (controller){
+                 return     ListView.builder(itemBuilder: (context, index){
                   return Container(child: Card(
                     shape: RoundedRectangleBorder(
                       side: BorderSide(
@@ -41,7 +45,7 @@ class ProdctScreen extends StatelessWidget {
                         height: 120,
                         width: double.infinity,
                         child: Image.asset(
-                          productController.products[index].productImage,
+                          productController.productData[index].productImage,
                           fit: BoxFit.contain,
                         ),
                       ),
@@ -51,14 +55,15 @@ class ProdctScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              productController.products[index].productName,
+                              productController.productData[index].productName,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,),
                             ),
                             IconButton(
                               onPressed: (){
-                            }, icon: Icon(productController.Products[index].favorite 
+                                productController.addtoFavorite(productController.productData[index].id);
+                              }, icon: Icon(productController.productData[index].favorite 
                                        ? Icons.favorite:
                                        Icons.favorite_border, 
 
@@ -72,12 +77,14 @@ class ProdctScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('price ${productController.produts[index].price}',
+                            Text('price ${productController.productData[index].price}',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,),
                             ),
-                            ElevatedButton(onPressed: (){},
+                            ElevatedButton(onPressed: (){
+                              productController.addtoCart(productController.productData[index]);
+                            },
                              child: Text("Add to Cart",
                              style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -89,8 +96,18 @@ class ProdctScreen extends StatelessWidget {
                       ],
                     ),
                   ),);
-              }, itemCount: productController.productData.length,)
+              }, itemCount: productController.productData.length,);
+              },),
+             
             ),
+            SizedBox(height: 10,),
+            GetX<ProductControllers>(builder :(controller)=>
+             Text(
+              "Total Amount : ${productController.totalPrice}",
+              style: TextStyle(fontSize: 20, color: Colors.white),
+            ),),
+           
+            SizedBox(height: 20,)
           ],),
     );
   }

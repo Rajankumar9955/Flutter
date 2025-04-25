@@ -29,6 +29,7 @@ class ProductsModel {
   String? createdAt;
   String? updatedAt;
   Category? category;
+  List<Images>? images;
 
   ProductsModel(
       {this.id,
@@ -60,7 +61,8 @@ class ProductsModel {
       this.status,
       this.createdAt,
       this.updatedAt,
-      this.category});
+      this.category,
+      this.images});
 
   ProductsModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -95,6 +97,12 @@ class ProductsModel {
     category = json['category'] != null
         ? new Category.fromJson(json['category'])
         : null;
+    if (json['images'] != null) {
+      images = <Images>[];
+      json['images'].forEach((v) {
+        images!.add(new Images.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -130,6 +138,9 @@ class ProductsModel {
     data['updated_at'] = this.updatedAt;
     if (this.category != null) {
       data['category'] = this.category!.toJson();
+    }
+    if (this.images != null) {
+      data['images'] = this.images!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -226,6 +237,43 @@ class Parentcategory {
     data['id'] = this.id;
     data['category_name'] = this.categoryName;
     data['url'] = this.url;
+    return data;
+  }
+}
+
+class Images {
+  int? id;
+  int? productId;
+  String? image;
+  int? status;
+  String? createdAt;
+  String? updatedAt;
+
+  Images(
+      {this.id,
+      this.productId,
+      this.image,
+      this.status,
+      this.createdAt,
+      this.updatedAt});
+
+  Images.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    productId = json['product_id'];
+    image = json['image'];
+    status = json['status'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['product_id'] = this.productId;
+    data['image'] = this.image;
+    data['status'] = this.status;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
     return data;
   }
 }
