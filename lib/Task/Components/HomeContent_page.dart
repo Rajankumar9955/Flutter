@@ -13,7 +13,7 @@ class HomeContent_page extends StatefulWidget {
 class _HomeContent_pageState extends State<HomeContent_page> {
  
   // PageController pageController = PageController();
-  // int currentPage = 0;
+  int currentPage = 0;
   
   @override
   Widget build(BuildContext context) {
@@ -22,136 +22,126 @@ class _HomeContent_pageState extends State<HomeContent_page> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Search
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade100,
-                  borderRadius: BorderRadius.circular(20),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Search
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade100,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(Icons.search, color: Colors.grey),
+                      SizedBox(width: 10),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: "Search any Product..",
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                      Icon(Icons.mic, color: Colors.grey),
+                    ],
+                  ),
                 ),
-                child: Row(
+                SizedBox(height: 20),
+            
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(Icons.search, color: Colors.grey),
-                    SizedBox(width: 10),
-                    Expanded(
-                      child: TextField(
-                        decoration: InputDecoration(
-                          hintText: "Search any Product..",
-                          border: InputBorder.none,
+                    Text(
+                      "All Featured",
+                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    ),
+            
+                    Row(
+                      children: [
+                        _actionButton("Sort", Icons.swap_vert),
+                        SizedBox(width: 10),
+                        _actionButton("Filter", Icons.filter_alt),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+            
+                SizedBox(
+                  height: 100,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children:
+                          categories.map((category) {
+                            return Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 30,
+                                    backgroundImage: AssetImage(category.Image),
+                                    child: InkWell(
+                                      onTap: () {
+                                        print(category.Name);
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(height: 6),
+                                  Text(
+                                    category.Name,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }).toList(),
+                    ),
+                  ),
+                ),
+            
+                //promoBanner
+               SizedBox(height: 189,
+               child: PageView.builder(
+                onPageChanged: (val){
+                  setState(() {
+                    currentPage=val;
+                  });  
+                },
+                itemBuilder: (context, index) =>  promoBanner(),itemCount: 3,),
+               ),
+
+               SizedBox(height: 9,),
+                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        3,
+                        (index) => Container(
+                          height:11,width:11,
+                          margin: EdgeInsets.only(left: 5),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: const Color(0xFFDEDBDB),
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                            color: currentPage==index?Color(0xFFFFA3B3):Color(0xfDEDBDB),
+                          ),
+                          
                         ),
                       ),
                     ),
-                    Icon(Icons.mic, color: Colors.grey),
-                  ],
-                ),
-              ),
-              SizedBox(height: 20),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "All Featured",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                  ),
-
-                  Row(
-                    children: [
-                      _actionButton("Sort", Icons.swap_vert),
-                      SizedBox(width: 10),
-                      _actionButton("Filter", Icons.filter_alt),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(height: 20),
-
-              SizedBox(
-                height: 100,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children:
-                        categories.map((category) {
-                          return Padding(
-                            padding: const EdgeInsets.only(right: 16),
-                            child: Column(
-                              children: [
-                                CircleAvatar(
-                                  radius: 30,
-                                  backgroundImage: AssetImage(category.Image),
-                                  child: InkWell(
-                                    onTap: () {
-                                      print(category.Name);
-                                    },
-                                  ),
-                                ),
-                                SizedBox(height: 6),
-                                Text(
-                                  category.Name,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        }).toList(),
-                  ),
-                ),
-              ),
-
-              //promoBanner
-               
-              //    Expanded(
-              //   child: PageView.builder(
-              //     controller: pageController,
-              //     onPageChanged: (value) {
-              //       currentPage = value;
-              //       setState(() {
-              //         currentPage = value;
-              //       });
-              //     },
-              //     // itemCount: products.length,
-              //     itemBuilder: (context, index) {
-              //       return CustomSliderWidget(
-              //         ProBanner: PromoBanner[index],
-              //       );
-              //     },
-              //   ),
-              // ),
-              // Row(
-              //   children: [
-              //     Expanded(
-              //       child: Row(
-              //         mainAxisAlignment: MainAxisAlignment.center,
-              //         children: List.generate(
-              //           3,
-              //           (index) => Container(
-              //             margin: EdgeInsets.only(left: 5),
-              //             decoration: BoxDecoration(
-              //               border: Border.all(
-              //                 color: const Color.fromARGB(255, 16, 15, 15),
-              //               ),
-              //               borderRadius: BorderRadius.circular(10),
-              //               color: Colors.black,
-              //             ),
-              //             height: 12,
-              //             width: currentPage == index ? 30 : 10,
-              //           ),
-              //         ),
-              //       ),
-                    
-              //     ),
-              promoBanner(),
-              SizedBox(height: 20),
-              dealOfTheDayCard(),
-              SizedBox(height: 20),
-            ],
+                SizedBox(height: 9),
+                dealOfTheDayCard(),
+                SizedBox(height: 20),
+                ItemSlider(),
+              ],
+            ),
           ),
             
         )
@@ -228,6 +218,47 @@ class _HomeContent_pageState extends State<HomeContent_page> {
   // List<PromobannerModel>PromoBanner=[
   //   PromobannerModel(Image: "assets/ProBanner1.png", Offer: "50-40% ", Description: "Now in (Products)\n", ShopNow: "Show Now", Colors:"All Colors")
   // ];
+
+
+
+  
+Widget ItemSlider(){
+   return SizedBox(
+                height: 500,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children:
+                        categories.map((category) {
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 16),
+                            child: Column(
+                              children: [
+                                CircleAvatar(
+                                  radius: 30,
+                                  backgroundImage: AssetImage(category.Image),
+                                  child: InkWell(
+                                    onTap: () {
+                                      // print(category.Name);
+                                    },
+                                  ),
+                                ),
+                                SizedBox(height: 6),
+                                Text(
+                                  category.Name,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        }).toList(),
+                  ),
+                ),
+   );
+}
 }
 
 Widget _actionButton(String label, IconData icon) {
@@ -427,3 +458,6 @@ Widget dealOfTheDayCard() {
     ),
   );
 }
+
+
+

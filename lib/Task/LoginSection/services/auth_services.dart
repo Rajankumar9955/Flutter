@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:pro1/data/session_manager.dart';
 
 class AuthServices {
+  // signup Here
  Future<String> createUser(
     String name,
     String email,
@@ -32,9 +33,6 @@ class AuthServices {
     }
     return "Failed";
   }
-
-
-
 
 
   //login Here
