@@ -159,6 +159,7 @@ class _WishListState extends State<WishList> {
                           crossAxisSpacing: 12,
                           childAspectRatio: 0.75,
                         ),
+
                         itemBuilder: (context, index) {
                           final product = snapshot.data![index];
                           return Card(
@@ -203,10 +204,6 @@ class _WishListState extends State<WishList> {
         },
       ),
     );
-
-
-
-    
   }
 
   Widget _actionButton(String label, IconData icon) {
@@ -225,6 +222,8 @@ class _WishListState extends State<WishList> {
       ),
     );
   }
+
+
 
   List<CollectionsModel> categories = [
     CollectionsModel(

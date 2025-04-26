@@ -70,41 +70,7 @@ class _HomeContent_pageState extends State<HomeContent_page> {
                 ),
                 SizedBox(height: 20),
             
-                SizedBox(
-                  height: 100,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children:
-                          categories.map((category) {
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 16),
-                              child: Column(
-                                children: [
-                                  CircleAvatar(
-                                    radius: 30,
-                                    backgroundImage: AssetImage(category.Image),
-                                    child: InkWell(
-                                      onTap: () {
-                                        print(category.Name);
-                                      },
-                                    ),
-                                  ),
-                                  SizedBox(height: 6),
-                                  Text(
-                                    category.Name,
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          }).toList(),
-                    ),
-                  ),
-                ),
+               
             
                 //promoBanner
                SizedBox(height: 189,
@@ -139,7 +105,7 @@ class _HomeContent_pageState extends State<HomeContent_page> {
                 SizedBox(height: 9),
                 dealOfTheDayCard(),
                 SizedBox(height: 20),
-                ItemSlider(),
+                // ItemSlider(),
               ],
             ),
           ),
@@ -214,51 +180,6 @@ class _HomeContent_pageState extends State<HomeContent_page> {
           "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
     ),
   ];
-
-  // List<PromobannerModel>PromoBanner=[
-  //   PromobannerModel(Image: "assets/ProBanner1.png", Offer: "50-40% ", Description: "Now in (Products)\n", ShopNow: "Show Now", Colors:"All Colors")
-  // ];
-
-
-
-  
-Widget ItemSlider(){
-   return SizedBox(
-                height: 500,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children:
-                        categories.map((category) {
-                          return Padding(
-                            padding: const EdgeInsets.only(right: 16),
-                            child: Column(
-                              children: [
-                                CircleAvatar(
-                                  radius: 30,
-                                  backgroundImage: AssetImage(category.Image),
-                                  child: InkWell(
-                                    onTap: () {
-                                      // print(category.Name);
-                                    },
-                                  ),
-                                ),
-                                SizedBox(height: 6),
-                                Text(
-                                  category.Name,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        }).toList(),
-                  ),
-                ),
-   );
-}
 }
 
 Widget _actionButton(String label, IconData icon) {
@@ -278,67 +199,6 @@ Widget _actionButton(String label, IconData icon) {
   );
 }
 
-
-// class CustomSliderWidget extends StatelessWidget {
-//        final PromobannerModel ProBanner;
-//   const CustomSliderWidget({super.key, required this.ProBanner}); //required this.product
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//     width: double.infinity,
-//     height: 180,
-//     decoration: BoxDecoration(
-//       borderRadius: BorderRadius.circular(16),
-//       image: DecorationImage(
-//         image: AssetImage(ProBanner.Image), // image 
-//         fit: BoxFit.cover,
-//       ),
-//     ),
-//     padding: const EdgeInsets.all(16),
-//     child: Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       children: [
-//         Text(
-//           ProBanner.Offer, //////////////////
-//           style: TextStyle(
-//             fontSize: 22,
-//             fontWeight: FontWeight.bold,
-//             color: Colors.white,
-//           ),
-//         ),
-//         SizedBox(height: 8),
-//         Text(
-//               ProBanner.Description,
-//           style: TextStyle(color: Colors.white, fontSize: 14),
-//         ),
-//         Text(
-//           ProBanner.Colors,
-//           style: TextStyle(color: Colors.white, fontSize: 14),
-//         ),
-//         SizedBox(height: 12),
-//         Container(
-//           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-//           decoration: BoxDecoration(
-//             color: Colors.white,
-//             borderRadius: BorderRadius.circular(30),
-//           ),
-//           child: Row(
-//             mainAxisSize: MainAxisSize.min,
-//             children: [
-//               Text("Shop Now", style: TextStyle(fontWeight: FontWeight.bold)),
-//               SizedBox(width: 6),
-//               Icon(Icons.arrow_forward, size: 16),
-//             ],
-//           ),
-//         ),
-//       ],
-//     ),
-//   );
-    
-//   }
-// }
 
 Widget promoBanner() {
   return Container(
@@ -460,4 +320,4 @@ Widget dealOfTheDayCard() {
 }
 
 
-
+// Product Slider
