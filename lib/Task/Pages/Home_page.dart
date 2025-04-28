@@ -80,7 +80,7 @@ static final List<Widget> _screen=[
           child: SizedBox(
             height: 56,
             width: 56,
-            child: Icon(CupertinoIcons.cart, size: 28,color: Colors.white,),          
+            child: buildNavBarItem(CupertinoIcons.cart, "Cart",2),         
             ),
         ),
       ),
