@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pro1/2nd%20day/model/product_model.dart';
+import 'package:pro1/Task/Components/ProductSliders/HomeProductSlider_page.dart';
 import 'package:pro1/Task/Models/CollectionsModel.dart';
 import 'package:pro1/Task/Models/PromoBanner_Model.dart';
 
@@ -14,6 +15,7 @@ class _HomeContent_pageState extends State<HomeContent_page> {
  
   // PageController pageController = PageController();
   int currentPage = 0;
+  // final HomeProSlider=ProductSlider();
   
   @override
   Widget build(BuildContext context) {
@@ -105,7 +107,10 @@ class _HomeContent_pageState extends State<HomeContent_page> {
                 SizedBox(height: 9),
                 dealOfTheDayCard(),
                 SizedBox(height: 20),
-                // ItemSlider(),
+                
+
+                ProductSlider()
+                 
               ],
             ),
           ),
