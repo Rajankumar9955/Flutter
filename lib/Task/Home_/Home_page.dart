@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pro1/Task/Components/Cart_page.dart';
-import 'package:pro1/Task/Components/HomeContent_page.dart';
+import 'package:pro1/Task/AddToCart/Cart_page.dart';
+import 'package:pro1/Task/Home_/Home_content/HomeContent_page.dart';
 import 'package:pro1/Task/Components/SearchSection.dart';
-import 'package:pro1/Task/Components/Search_page.dart';
-import 'package:pro1/Task/Components/Settings.dart';
-import 'package:pro1/Task/Components/Wishlist.dart';
+import 'package:pro1/Task/Search_/Search_page.dart';
+import 'package:pro1/Task/Settings_/Settings.dart';
+import 'package:pro1/Task/WishList_/Wishlist.dart';
 import 'package:pro1/Task/Pages/NavbarSlider_page.dart';//////////////////////////
 
 class TaskHomePage extends StatefulWidget {

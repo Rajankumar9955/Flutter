@@ -25,7 +25,7 @@ class _SearchSectionState extends State<SearchSection> {
                   borderRadius: BorderRadius.circular(5),
                   borderSide: BorderSide(width: 0.8),
                 ),
-                hintText: "Search any Product...",
+                hintText: "Search any Product.......",
                 prefixIcon: Icon(Icons.search, size: 30.00,),
                 suffixIcon: IconButton(onPressed: (){
                           
