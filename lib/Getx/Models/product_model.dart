@@ -18,4 +18,8 @@ class Product{
     required this.price,
     required this.favorite,
   });
+
+  // static Product fromJson(e) {}
+
+  // static Future<List<Product>?> fromJson(String json) {}
 }

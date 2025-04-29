@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:pro1/Task/Models/CollectionsModel.dart';
 import 'package:http/http.dart' as http;
-import 'package:pro1/Task/Models/product_model.dart';
+import 'package:pro1/Task/WishList_/Model/product_model.dart';
 
 class WishList extends StatefulWidget {
   const WishList({super.key});
@@ -172,7 +172,7 @@ class _WishListState extends State<WishList> {
                                 Expanded(
                                   child:
                                       product.productVideo == null
-                                          ? Container(color: const Color.fromARGB(255, 185, 52, 42))
+                                          ? Container(color: const Color.fromRGBO(185, 52, 42, 1))
                                           : Image.network(
                                            product.images![0].fullUrl!+"/small/"+product.images![0].image!,
                                             fit: BoxFit.cover,

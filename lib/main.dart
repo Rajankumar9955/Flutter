@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pro1/Getx/Views/product_screen.dart';
-import 'package:pro1/Task/Pages/Home_page.dart';
+import 'package:pro1/Task/Home_/Home_page.dart';
 import 'package:pro1/Task/Pages/NavbarSlider_page.dart';
 // import 'package:pro1/3rd%20day/Layout_widget.dart';
 // import 'package:pro1/4th%20day/Ecommerce_Layout.dart';
 // import 'package:pro1/2nd%20day/secondDay.dart';
-import 'package:pro1/Task/Task.dart';
+import 'package:pro1/Task/Intro_Page/Task.dart';
 import 'package:pro1/data/session_manager.dart';
 
 

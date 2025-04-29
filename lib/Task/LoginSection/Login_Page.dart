@@ -4,7 +4,7 @@ import 'package:pro1/Task/LoginSection/ForgetPass_Page.dart';
 import 'package:pro1/Task/LoginSection/CreateUser_page.dart';
 import 'package:pro1/Task/GetStarted/GetStarted_page.dart';
 import 'package:pro1/Task/LoginSection/services/auth_services.dart';
-import 'package:pro1/Task/Task.dart';
+import 'package:pro1/Task/Intro_Page/Task.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -219,7 +219,6 @@ class CustomLogoWidget extends StatelessWidget {
           border: Border.all(color: const Color.fromARGB(255, 234, 21, 21)),
           borderRadius: BorderRadius.circular(50),
         ),
-        // child: Image.asset("assets/googleImage.jpeg", height: 50, width: 50, fit: BoxFit.cover),
       ),
     );
   }

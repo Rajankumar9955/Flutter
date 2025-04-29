@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:pro1/Task/Pages/Home_page.dart';
+import 'package:pro1/Task/Home_/Home_page.dart';
 
 class GetstartedPage extends StatelessWidget {
   const GetstartedPage({super.key});
