@@ -1,4 +1,8 @@
+import 'package:pro1/Task/LoginSection/Login_Page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get/get.dart';
+
+ final Future<SharedPreferences>_prefs=SharedPreferences.getInstance();
 
 class SessionManager {
   static SharedPreferences? preference;
@@ -13,4 +17,10 @@ class SessionManager {
 static dynamic  getToken(){
     return preference!.getString(token);
   }
+
+   static logOut()async{
+           SharedPreferences? prefs=await _prefs;
+                prefs?.clear();
+                Get.offAll(LoginPage());
+   }
 }

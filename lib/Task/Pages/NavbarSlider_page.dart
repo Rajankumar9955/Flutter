@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:pro1/Task/LoginSection/CreateUser_page.dart';
+import 'package:pro1/data/session_manager.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get/get.dart';
 
 class NavbarSlider extends StatelessWidget {
-  const NavbarSlider({super.key});
+   NavbarSlider({super.key});
 
+ final Future<SharedPreferences>_prefs=SharedPreferences.getInstance();
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -70,9 +75,25 @@ class NavbarSlider extends StatelessWidget {
                   Divider(),
                   SizedBox(height: 26,),
                   ListTile(
+                    
                     leading: Icon(Icons.logout, color: Colors.red,),
                     title: Text("Logout", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20,color: Colors.red),),
-                    onTap: () => null,
+                    onTap: () async{
+                         SessionManager.logOut();
+                    },
+                  ),
+                  SizedBox(height: 150,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Text("welcome Home"),
+                        TextButton(onPressed: ()async{
+                           final SharedPreferences? prefs=await _prefs;
+                           print(prefs?.get('token'));
+                        }, child: Text("Print Token")),
+                      ],
+                    ),
+                  ),
                   )
             ],
           ),

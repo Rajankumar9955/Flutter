@@ -7,6 +7,7 @@ import 'package:pro1/Task/Pages/NavbarSlider_page.dart';
 // import 'package:pro1/2nd%20day/secondDay.dart';
 import 'package:pro1/Task/Intro_Page/Task.dart';
 import 'package:pro1/data/session_manager.dart';
+import 'package:get/get.dart';
 
 
 void main() async{
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Stylish',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

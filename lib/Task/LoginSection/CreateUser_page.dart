@@ -1,8 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:pro1/Task/LoginSection/Controller/Signup_controller.dart';
 import 'package:pro1/Task/LoginSection/Login_Page.dart';
 import 'package:pro1/Task/LoginSection/services/auth_services.dart';
 import 'package:pro1/Task/Intro_Page/Task.dart';
+import 'package:get/get.dart';
 
 class CreateUserPage extends StatefulWidget {
   CreateUserPage({super.key});
@@ -12,17 +14,7 @@ class CreateUserPage extends StatefulWidget {
 }
 
 class _CreateUserPageState extends State<CreateUserPage> {
-  TextEditingController userCotroller = TextEditingController();
-
-  TextEditingController emailController = TextEditingController();
-
-  TextEditingController mobileController = TextEditingController();
-
-  TextEditingController dobController = TextEditingController();
-
-  TextEditingController passwordController = TextEditingController();
-
-  bool selected = false;
+RegisterationController registerationController=Get.put(RegisterationController());
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +41,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
                     ),
                     SizedBox(height: 15),
                     TextFormField(
-                      controller: userCotroller,
+                      controller: registerationController.userController,
                       decoration: InputDecoration(
                         hintText: "Username",
                         prefixIcon: Icon(Icons.verified_user),
@@ -62,7 +54,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
                     ),
                     SizedBox(height: 5),
                     TextFormField(
-                      controller: emailController,
+                      controller: registerationController.emailController,
                       decoration: InputDecoration(
                         hintText: "Email",
                         prefixIcon: Icon(Icons.email),
@@ -75,7 +67,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
                     ),
                     SizedBox(height: 5),
                     TextFormField(
-                      controller: mobileController,
+                      controller: registerationController.mobileController,
                       decoration: InputDecoration(
                         hintText: "Mobile Number",
                         prefixIcon: Icon(Icons.phone),
@@ -90,7 +82,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
                     ),
                     SizedBox(height: 5),
                     TextFormField(
-                      controller: dobController,
+                      controller: registerationController.dobController,
                       decoration: InputDecoration(
                         hintText: "DOB",
                         prefixIcon: Icon(Icons.calendar_today),
@@ -105,7 +97,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
                   SizedBox(height: 5),
 
                     TextFormField(
-                      controller: passwordController,
+                      controller: registerationController.passwordController,
                       decoration: InputDecoration(
                         hintText: "Password",
                         prefixIcon: Icon(Icons.password),
@@ -114,7 +106,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
                     ),
                     SizedBox(height: 5,),
                     TextFormField(
-                      controller: passwordController,
+                      controller: registerationController.confirmPassController,
                       decoration: InputDecoration(
                         hintText: "Confirm Password",
                         prefixIcon: Icon(Icons.password),
@@ -128,10 +120,10 @@ class _CreateUserPageState extends State<CreateUserPage> {
                       children: [
                         Container(
                           child: Checkbox(
-                            value: selected,
+                            value: registerationController.selected,
                             onChanged: (value) {
                               setState(() {
-                                selected = value!;
+                                registerationController.selected = value!;
                               });
                             },
                           ),
@@ -157,31 +149,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
                     // ////////////////////////////////////////////
                     MaterialButton(
                       onPressed: () async {
-                        String status = '';
-                        status = await AuthServices().createUser(
-                          userCotroller.text,
-                          emailController.text,
-                          mobileController.text,
-                          dobController.text,
-                          passwordController.text,
-                          passwordController.text,
-                          selected,
-                        );
-                        if (status == "success") {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("User Created Successfully")),
-                          );
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => LoginPage(), 
-                            ),
-                          );
-                        }else{
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("Failed")),
-                          );
-                        }
+                            registerationController.UserRegistration();
                       },
                       minWidth: double.infinity,
                       child: Text(
@@ -274,7 +242,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
       lastDate: DateTime(2100),
     );
     if (_picked != null) {
-      dobController.text = _picked.toString().split(" ")[0];
+      registerationController.dobController.text = _picked.toString().split(" ")[0];
     }
   }
 }

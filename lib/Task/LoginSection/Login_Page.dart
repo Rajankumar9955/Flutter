@@ -1,10 +1,12 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:pro1/Task/LoginSection/Controller/Login_Controller.dart';
 import 'package:pro1/Task/LoginSection/ForgetPass_Page.dart';
 import 'package:pro1/Task/LoginSection/CreateUser_page.dart';
 import 'package:pro1/Task/GetStarted/GetStarted_page.dart';
 import 'package:pro1/Task/LoginSection/services/auth_services.dart';
 import 'package:pro1/Task/Intro_Page/Task.dart';
+import 'package:get/get.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,10 +17,9 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
    final _formKey = GlobalKey<FormState>();
-
-  TextEditingController emailCotroller = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-
+   LoginController loginController=Get.put(LoginController());
+ 
+  var isLogin=false.obs;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     SizedBox(height: 34),
                     TextFormField(
-                      controller: emailCotroller,
+                      controller: loginController.emailController,
                       decoration: InputDecoration(
                         hintText: "User Email",
                         prefixIcon: Icon(Icons.email),
@@ -62,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     SizedBox(height: 28),
                     TextFormField(
-                      controller: passwordController,
+                      controller: loginController.passwordController,
                       decoration: InputDecoration(
                         hintText: "Password",
                         prefixIcon: Icon(Icons.password),
@@ -90,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         onTap: () {
                           Navigator.push(
-                            context,
+                                context,
                             MaterialPageRoute(
                               builder: (context) => ForgetpassPage(),
                             ),
@@ -101,25 +102,8 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(height: 25),
                     MaterialButton(
                       onPressed: () async {
-                        String status = '';
-                        status = await AuthServices().UserLogin(
-                          emailCotroller.text,
-                          passwordController.text,
-                        );
-                        // if(_formKey.currentContext!.validate()){}
-                        if (status == "success") {
-                          ScaffoldMessenger.of(
-                            context,
-                          ).showSnackBar(SnackBar(content: Text("login")));
-                        }
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => GetstartedPage(),
-                          ),
-                          (route) => true,
-                        );
-                      },
+                        loginController.userLogin();
+                       },
                       minWidth: double.infinity,
                       child: Text(
                         "Login",
@@ -132,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                       color: Colors.red,
                       height: 50,
                       textColor: Colors.white,
-                    ),
+                    ), 
                   ],
                 ),
                 SizedBox(height: 45),
