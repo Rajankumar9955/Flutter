@@ -23,7 +23,7 @@ class RegisterationController extends GetxController {
 
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
-  Future<void> UserRegistration() async {
+  Future<void> UserRegistration(context) async {
     try {
       var headers = {'Content-Type': 'application/json'};
       var url = Uri.parse(
@@ -50,10 +50,33 @@ class RegisterationController extends GetxController {
         Get.offAll(LoginPage());
         Get.snackbar("Success", "Account create success");
       }
+      else {
+        // Login failed
+          if (response.statusCode != 200) {
+            final responseData = json.decode(response.body);
+          
+            if (responseData['status'] == 'error') {
+              final errorList = responseData['errors'];
+
+              String errorMessage = '';
+              if (errorList['email'] != null && errorList['email'].isNotEmpty) {
+                errorMessage = errorList['email'][0];
+              } else {
+                if (errorList['terms'] != null && errorList['terms'].isNotEmpty) {
+                errorMessage = errorList['terms'][0];
+              }
+              }
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(errorMessage), backgroundColor: Colors.red),
+              );
+            }
+          }
+      }
     } catch (e) {
       print(e.toString());
       // Get.to(CreateUserPage());
       Get.snackbar("Error", e.toString());
+      Get.snackbar('Error', e.toString());
       print(e.toString());
     }
   }

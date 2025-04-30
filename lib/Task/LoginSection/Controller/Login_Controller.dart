@@ -19,7 +19,7 @@ class LoginController extends GetxController{
 
   final Future <SharedPreferences>_prefs= SharedPreferences.getInstance();
 
-  Future<void>userLogin()async{
+  Future<void>userLogin(context)async{
     try{
       var headers= {'Content-Type': 'application/json'};
       var url=Uri.parse("https://phplaravel-1264682-5431883.cloudwaysapps.com/api/login");
@@ -39,8 +39,17 @@ class LoginController extends GetxController{
             Get.off(TaskHomePage());
             Get.snackbar("success ", data["message"]);
           } 
-
-     
+          else {
+              // Login failed
+                final errorData = json.decode(response.body);
+                String errorMessage = errorData['message'] ?? 'Login failed';
+                 ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                   content: Text(errorMessage),
+                      backgroundColor: Colors.red,
+      ),
+            );
+          }
     }catch(e){
      print(e.toString());
     }

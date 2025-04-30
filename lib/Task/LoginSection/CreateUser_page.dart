@@ -149,7 +149,7 @@ RegisterationController registerationController=Get.put(RegisterationController(
                     // ////////////////////////////////////////////
                     MaterialButton(
                       onPressed: () async {
-                            registerationController.UserRegistration();
+                            registerationController.UserRegistration(context);
                       },
                       minWidth: double.infinity,
                       child: Text(

@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 
 import 'package:pro1/Task/Models/Categories.dart';
 import 'package:http/http.dart' as http;
+import 'package:pro1/Task/WishList_/Controller/Wishlist_Controller.dart';
 import 'package:pro1/Task/WishList_/Model/Wishlist_Model.dart';
+import 'package:get/get.dart';
 
 class WishList extends StatefulWidget {
   const WishList({super.key});
@@ -14,38 +16,39 @@ class WishList extends StatefulWidget {
 }
 
 class _WishListState extends State<WishList> {
+final WishlistController wishlistController= Get.put(WishlistController());
   @override
-  bool isLoading = false;
-  Future<List<WishlistModel>> getProduct() async {
-    print("All Products");
-    try {
-      setState(() {
-        isLoading = true;
-      });
-      final response = await http.get(
-        Uri.parse(
-          'https://phplaravel-1264682-5431883.cloudwaysapps.com/api/products',
-        ),
-      );
+  // bool isLoading = false;
+  // Future<List<WishlistModel>> getProduct() async {
+  //   print("All Products");
+  //   try {
+  //     setState(() {
+  //       isLoading = true;
+  //     });
+  //     final response = await http.get(
+  //       Uri.parse(
+  //         'https://phplaravel-1264682-5431883.cloudwaysapps.com/api/products',
+  //       ),
+  //     );
 
-      List<WishlistModel> productList = [];
-      var data = jsonDecode(response.body.toString());
-      data['products'].map((e) {
-        productList.add(WishlistModel.fromJson(e));
-      }).toList();
-      setState(() {
-        isLoading = false;
-      });
-      print(productList);
-      return productList;
-    } catch (e) {
-      setState(() {
-        isLoading = false;
-      });
-      print(e.toString());
-      return [];
-    }
-  }
+  //     List<WishlistModel> productList = [];
+  //     var data = jsonDecode(response.body.toString());
+  //     data['products'].map((e) {
+  //       productList.add(WishlistModel.fromJson(e));
+  //     }).toList();
+  //     setState(() {
+  //       isLoading = false;
+  //     });
+  //     print(productList);
+  //     return productList;
+  //   } catch (e) {
+  //     setState(() {
+  //       isLoading = false;
+  //     });
+  //     print(e.toString());
+  //     return [];
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +96,7 @@ class _WishListState extends State<WishList> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "${snapshot.data!.length}+ Items",
+                          "${wishlistController.fetchProducts().}+ Items",
                           style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
