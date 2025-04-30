@@ -1,4 +1,4 @@
-class ProductsModel {
+class WishlistModel {
   int? id;
   int? categoryId;
   int? brandId;
@@ -31,7 +31,7 @@ class ProductsModel {
   Category? category;
   List<Images>? images;
 
-  ProductsModel(
+  WishlistModel(
       {this.id,
       this.categoryId,
       this.brandId,
@@ -64,7 +64,7 @@ class ProductsModel {
       this.category,
       this.images});
 
-  ProductsModel.fromJson(Map<String, dynamic> json) {
+  WishlistModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     categoryId = json['category_id'];
     brandId = json['brand_id'];

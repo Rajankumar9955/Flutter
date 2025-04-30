@@ -18,16 +18,12 @@ class ProductDetailPage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             decoration: BoxDecoration(border: Border.all(color: Colors.black)),
             child: SingleChildScrollView(
-              
               child: Column(
                 spacing: 20,
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                 
                 children: [
                   Container(
-                    
-                    
                           margin: EdgeInsets.only(bottom: 10),
                           padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(

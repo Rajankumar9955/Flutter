@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pro1/2nd%20day/model/product_model.dart';
+import 'package:pro1/Task/Home_/DealOfTheDay/DealOfTheDay_page.dart';
 import 'package:pro1/Task/Home_/ProductSliders/HomeProductSlider_page.dart';
-import 'package:pro1/Task/Models/CollectionsModel.dart';
+import 'package:pro1/Task/Models/Categories.dart';
 import 'package:pro1/Task/Models/PromoBanner_Model.dart';
 
 class HomeContent_page extends StatefulWidget {
@@ -20,6 +21,7 @@ class _HomeContent_pageState extends State<HomeContent_page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
@@ -70,11 +72,47 @@ class _HomeContent_pageState extends State<HomeContent_page> {
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
-            
-            
+                SizedBox(height: 15),
+
+               SizedBox(
+                      height: 100,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children:
+                              categories.map((category) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(right: 16),
+                                  child: Column(
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 30,
+                                        backgroundImage: AssetImage(
+                                          category.imagePath,
+                                        ),
+                                        child: InkWell(
+                                          onTap: () {
+                                            print(category.Name);
+                                          },
+                                        ),
+                                      ),
+                                      SizedBox(height: 6),
+                                      Text(
+                                        category.Name,
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }).toList(),
+                        ),
+                      ),
+                    ),
+
                
-            
                 //promoBanner
                SizedBox(height: 189,
                child: PageView.builder(
@@ -106,7 +144,7 @@ class _HomeContent_pageState extends State<HomeContent_page> {
                       ),
                     ),
                 SizedBox(height: 9),
-                dealOfTheDayCard(),
+                dealOfTheDayCard(context),
                 SizedBox(height: 20),
                 ProductSlider()
                  
@@ -119,70 +157,12 @@ class _HomeContent_pageState extends State<HomeContent_page> {
     );
   }
 
-  List<CollectionsModel> categories = [
-    CollectionsModel(
-      Image: "assets/beauty.jpg",
-      Name: "Beauty",
-      Description:
-          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
-    ),
-    CollectionsModel(
-      Image: "assets/fashion.jpg",
-      Name: "Fashion",
-      Description:
-          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
-    ),
-    CollectionsModel(
-      Image: "assets/kids.jpeg",
-      Name: "Kids",
-      Description:
-          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
-    ),
-    CollectionsModel(
-      Image: "assets/mens.webp",
-      Name: "Mens",
-      Description:
-          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
-    ),
-    CollectionsModel(
-      Image: "assets/women.jpeg",
-      Name: "Womens",
-      Description:
-          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
-    ),
-  ];
-
-  List<CollectionsModel> products = [
-    CollectionsModel(
-      Image: "assets/beauty.jpg",
-      Name: "Beauty",
-      Description:
-          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
-    ),
-    CollectionsModel(
-      Image: "assets/fashion.jpg",
-      Name: "Fashion",
-      Description:
-          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
-    ),
-    CollectionsModel(
-      Image: "assets/kids.jpeg",
-      Name: "Kids",
-      Description:
-          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
-    ),
-    CollectionsModel(
-      Image: "assets/mens.webp",
-      Name: "Mens",
-      Description:
-          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
-    ),
-    CollectionsModel(
-      Image: "assets/women.jpeg",
-      Name: "Womens",
-      Description:
-          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
-    ),
+  final List<CollectionsModel> categories = [
+    CollectionsModel(Name: 'Beauty', imagePath: 'assets/beauty.jpg', Description: 'sdfaskjdfkasdkjfhsak'),
+    CollectionsModel(Name: 'Fashion', imagePath: 'assets/fashion.jpg', Description: 'sdfaskjdfkasdkjfhsak'),
+    CollectionsModel(Name: 'Kids', imagePath: 'assets/kids.jpeg', Description: 'sdfaskjdfkasdkjfhsak'),
+    CollectionsModel(Name: 'Mens', imagePath: 'assets/mens.webp', Description: 'sdfaskjdfkasdkjfhsak'),
+    CollectionsModel(Name: 'Womens', imagePath: 'assets/women.jpeg', Description: 'sdfaskjdfkasdkjfhsak'),
   ];
 }
 
@@ -203,6 +183,36 @@ Widget _actionButton(String label, IconData icon) {
   );
 }
 
+
+class Category {
+  final String name;
+  final String imagePath;
+  Category(this.name, this.imagePath);
+}
+class CategoryItem extends StatelessWidget {
+  final Category category;
+  const CategoryItem(this.category);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 40,
+            backgroundImage: AssetImage(category.imagePath),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            category.name,
+            style: TextStyle(fontSize: 16, color: Colors.black87),
+          ),
+        ],
+      ),
+    );
+  }
+}
 
 Widget promoBanner() {
   return Container(
@@ -258,7 +268,7 @@ Widget promoBanner() {
   );
 }
 
-Widget dealOfTheDayCard() {
+Widget dealOfTheDayCard(BuildContext context) {
   return Container(
     // margin: EdgeInsets.symmetric(horizontal: 1),
     padding: EdgeInsets.all(8),
@@ -308,7 +318,7 @@ Widget dealOfTheDayCard() {
             ),
           ),
           onPressed: () {
-            // Handle "View all"
+             Navigator.push(context, MaterialPageRoute(builder: (context)=>DealOfTheDayProducts()));
           },
           child: Row(
             children: [

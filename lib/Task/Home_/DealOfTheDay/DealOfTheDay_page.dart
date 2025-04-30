@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:pro1/Task/Home_/ProductSliders/Controller/getX_Controller.dart';
+import 'package:pro1/Task/Home_/DealOfTheDay/Controller/DealController.dart';
 import 'package:get/get.dart';
 
-class ProductSlider extends StatefulWidget {
-  ProductSlider({super.key});
+class DealOfTheDayProducts extends StatefulWidget {
+  const DealOfTheDayProducts({super.key});
 
   @override
-  State<ProductSlider> createState() => _ProductSliderState();
+  State<DealOfTheDayProducts> createState() => _DealOfTheDayProductsState();
 }
 
-class _ProductSliderState extends State<ProductSlider> {
-  final ProductController productController = Get.put(ProductController());
+class _DealOfTheDayProductsState extends State<DealOfTheDayProducts> {
+  final Dealcontroller dealcontroller = Get.put(Dealcontroller());
   int count = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return productController.isLoading.value
-          ? Center(child: CircularProgressIndicator())
-          : SizedBox(
-            height: 420,
-            child: ListView.builder(
+    return Scaffold(
+      body: Obx(() {
+        return dealcontroller.isLoading.value
+            ? Center(child: CircularProgressIndicator())
+            : ListView.builder(
               shrinkWrap: true,
-              itemCount: productController.ProductItems.length,
-              scrollDirection: Axis.horizontal,
+              itemCount: dealcontroller.ProductItems.length,
+              scrollDirection: Axis.vertical,
+              
               itemBuilder: (context, index) {
-                final product = productController.ProductItems[index];
+                final product = dealcontroller.ProductItems[index];
                 return Container(
-                  width: 250,
+                  width: 200,
                   margin: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey.shade300),
@@ -44,7 +44,7 @@ class _ProductSliderState extends State<ProductSlider> {
                         child:
                         product.images!.isEmpty ||product.images==null ? 
                         Container(
-                          child: Center( child: Text("Image Not Found!"),),
+                          child: Center( child: Text("Image Not Found!", style: TextStyle(fontSize: 16),),),
                           color: const Color.fromRGBO(185, 52, 42, 1,),height: 200,width: double.infinity,)
                          :Image.network(
                           product.images![0].fullUrl! +
@@ -61,17 +61,19 @@ class _ProductSliderState extends State<ProductSlider> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
+                              // 'Wowen Printed Kurti',
                                product.productName.toString(),
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
+                                color: Colors.amber
                               ),
                             ),
-
+                  
                             SizedBox(height: 5),
                             Text(
                               product.description.toString(),
-                              style: TextStyle(color: Colors.grey),
+                              style: TextStyle(color: Colors.grey, fontSize: 28),
                             ),
                             SizedBox(height: 10),
                             Row(
@@ -95,7 +97,7 @@ class _ProductSliderState extends State<ProductSlider> {
                                 SizedBox(width: 10),
                                 Text(
                                   '₹ ${product.finalPrice}',
-                                  style: TextStyle(color: Colors.orange),
+                                  style: TextStyle(color: Colors.orange, fontSize: 16),
                                 ),
                               ],
                             ),
@@ -116,14 +118,14 @@ class _ProductSliderState extends State<ProductSlider> {
                                 SizedBox(width: 5),
                                 Text(
                                   "5 Star",
-                                  style: TextStyle(color: Colors.grey),
+                                  style: TextStyle(color: Colors.grey, fontSize: 16),
                                 ), 
                               ],
                               
                             ),
                             SizedBox(height:5,),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: [
                                      ElevatedButton(onPressed: (){
                                             print("You Clicked the Buy Now Button");
@@ -138,11 +140,10 @@ class _ProductSliderState extends State<ProductSlider> {
                       ),
                     ],
                   ),
-                
                 );
               },
-            ),
-          );
-    });
+            );
+      }),
+    );
   }
 }

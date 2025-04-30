@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-import 'package:pro1/Task/Models/CollectionsModel.dart';
+import 'package:pro1/Task/Models/Categories.dart';
 import 'package:http/http.dart' as http;
-import 'package:pro1/Task/WishList_/Model/product_model.dart';
+import 'package:pro1/Task/WishList_/Model/Wishlist_Model.dart';
 
 class WishList extends StatefulWidget {
   const WishList({super.key});
@@ -16,7 +16,7 @@ class WishList extends StatefulWidget {
 class _WishListState extends State<WishList> {
   @override
   bool isLoading = false;
-  Future<List<ProductsModel>> getProduct() async {
+  Future<List<WishlistModel>> getProduct() async {
     print("All Products");
     try {
       setState(() {
@@ -28,10 +28,10 @@ class _WishListState extends State<WishList> {
         ),
       );
 
-      List<ProductsModel> productList = [];
+      List<WishlistModel> productList = [];
       var data = jsonDecode(response.body.toString());
       data['products'].map((e) {
-        productList.add(ProductsModel.fromJson(e));
+        productList.add(WishlistModel.fromJson(e));
       }).toList();
       setState(() {
         isLoading = false;
@@ -93,7 +93,7 @@ class _WishListState extends State<WishList> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "${categories.length}+ Items",
+                          "${snapshot.data!.length}+ Items",
                           style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
@@ -125,7 +125,7 @@ class _WishListState extends State<WishList> {
                                       CircleAvatar(
                                         radius: 30,
                                         backgroundImage: AssetImage(
-                                          category.Image,
+                                          category.imagePath,
                                         ),
                                         child: InkWell(
                                           onTap: () {
@@ -227,31 +227,31 @@ class _WishListState extends State<WishList> {
 
   List<CollectionsModel> categories = [
     CollectionsModel(
-      Image: "assets/beauty.jpg",
+      imagePath: "assets/beauty.jpg",
       Name: "Beauty",
       Description:
           "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
     ),
     CollectionsModel(
-      Image: "assets/fashion.jpg",
+      imagePath: "assets/fashion.jpg",
       Name: "Fashion",
       Description:
           "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
     ),
     CollectionsModel(
-      Image: "assets/kids.jpeg",
+      imagePath: "assets/kids.jpeg",
       Name: "Kids",
       Description:
           "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
     ),
     CollectionsModel(
-      Image: "assets/mens.webp",
+      imagePath: "assets/mens.webp",
       Name: "Mens",
       Description:
           "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
     ),
     CollectionsModel(
-      Image: "assets/women.jpeg",
+      imagePath: "assets/women.jpeg",
       Name: "Womens",
       Description:
           "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
