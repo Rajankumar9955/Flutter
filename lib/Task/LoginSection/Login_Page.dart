@@ -24,8 +24,6 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        // body:Form(child: child)
-        // key: _formKey,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
           child: SingleChildScrollView(
@@ -100,12 +98,13 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     SizedBox(height: 25),
-                    MaterialButton(
+                    Obx((){
+                     return MaterialButton(
                       onPressed: () async {
                         loginController.userLogin(context);
                        },
                       minWidth: double.infinity,
-                      child: Text(
+                      child: loginController.loading.value?CircularProgressIndicator():Text(
                         "Login",
                         style: TextStyle(
                           fontSize: 15,
@@ -116,7 +115,8 @@ class _LoginPageState extends State<LoginPage> {
                       color: Colors.red,
                       height: 50,
                       textColor: Colors.white,
-                    ), 
+                    );
+                    })
                   ],
                 ),
                 SizedBox(height: 45),

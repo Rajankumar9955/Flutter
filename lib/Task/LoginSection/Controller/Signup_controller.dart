@@ -23,7 +23,11 @@ class RegisterationController extends GetxController {
 
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
+ 
+  RxBool loading=false.obs;
+
   Future<void> UserRegistration(context) async {
+     loading.value=true;
     try {
       var headers = {'Content-Type': 'application/json'};
       var url = Uri.parse(
@@ -47,11 +51,13 @@ class RegisterationController extends GetxController {
       print(response.statusCode);
       print(response.body.toString());
       if (response.statusCode == 200) {
+        loading.value=false;
         Get.offAll(LoginPage());
         Get.snackbar("Success", "Account create success");
       }
       else {
         // Login failed
+        loading.value=false;
           if (response.statusCode != 200) {
             final responseData = json.decode(response.body);
           
@@ -73,6 +79,7 @@ class RegisterationController extends GetxController {
           }
       }
     } catch (e) {
+      loading.value=false;
       print(e.toString());
       // Get.to(CreateUserPage());
       Get.snackbar("Error", e.toString());
