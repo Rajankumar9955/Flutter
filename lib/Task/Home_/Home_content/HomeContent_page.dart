@@ -20,8 +20,7 @@ final HomeContentController homeContentController = Get.put(HomeContentControlle
   
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      
+    return Scaffold( 
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(

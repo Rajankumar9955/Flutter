@@ -12,7 +12,7 @@ class Product{
   Product({
     required this.id,
 
-    required this.productName,
+    required this.productName, 
     required this.productImage,
     required this.productDescription,
     required this.price,
