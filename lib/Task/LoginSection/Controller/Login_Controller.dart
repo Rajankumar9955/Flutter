@@ -17,9 +17,12 @@ class LoginController extends GetxController{
 
   TextEditingController passwordController = TextEditingController();
 
-  final Future <SharedPreferences>_prefs= SharedPreferences.getInstance();
+  // final Future <SharedPreferences>_prefs= SharedPreferences.getInstance();
+   
+   RxBool loading=false.obs;
 
-  Future<void>userLogin()async{
+  Future<void>userLogin(context)async{
+    loading.value=true;
     try{
       var headers= {'Content-Type': 'application/json'};
       var url=Uri.parse("https://phplaravel-1264682-5431883.cloudwaysapps.com/api/login");
@@ -32,6 +35,7 @@ class LoginController extends GetxController{
         print(response.statusCode);
         print(response.body);
         if(response.statusCode==200){
+          loading.value=false;
           var data = jsonDecode(response.body);
           SessionManager.setToken(data["token"]);
             emailController.clear();
@@ -39,9 +43,20 @@ class LoginController extends GetxController{
             Get.off(TaskHomePage());
             Get.snackbar("success ", data["message"]);
           } 
-
-     
+          else {
+              // Login failed
+              loading.value=false;
+                final errorData = json.decode(response.body);
+                String errorMessage = errorData['message'] ?? 'Login failed';
+                 ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                   content: Text(errorMessage),
+                      backgroundColor: Colors.red,
+      ),
+            );
+          }
     }catch(e){
+      loading.value=false;
      print(e.toString());
     }
   }

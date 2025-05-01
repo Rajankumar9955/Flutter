@@ -147,12 +147,13 @@ RegisterationController registerationController=Get.put(RegisterationController(
                     ),
                     SizedBox(height: 35),
                     // ////////////////////////////////////////////
-                    MaterialButton(
+                   Obx((){
+                    return  MaterialButton(
                       onPressed: () async {
-                            registerationController.UserRegistration();
+                            registerationController.UserRegistration(context);
                       },
                       minWidth: double.infinity,
-                      child: Text(
+                      child: registerationController.loading.value?CircularProgressIndicator():Text(
                         "Create Account",
                         style: TextStyle(
                           fontSize: 15,
@@ -163,7 +164,8 @@ RegisterationController registerationController=Get.put(RegisterationController(
                       color: Colors.red,
                       height: 50,
                       textColor: Colors.white,
-                    ),
+                    );
+                   })
                   ],
                 ),
 

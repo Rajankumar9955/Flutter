@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pro1/2nd%20day/model/product_model.dart';
 import 'package:pro1/Task/Home_/DealOfTheDay/DealOfTheDay_page.dart';
+import 'package:pro1/Task/Home_/Home_content/Controller/HomeContent.dart';
 import 'package:pro1/Task/Home_/ProductSliders/HomeProductSlider_page.dart';
 import 'package:pro1/Task/Models/Categories.dart';
 import 'package:pro1/Task/Models/PromoBanner_Model.dart';
+import 'package:get/get.dart';
 
 class HomeContent_page extends StatefulWidget {
   const HomeContent_page({super.key});
@@ -14,14 +16,11 @@ class HomeContent_page extends StatefulWidget {
 
 class _HomeContent_pageState extends State<HomeContent_page> {
  
-  // PageController pageController = PageController();
-  int currentPage = 0;
-  // final HomeProSlider=ProductSlider();
+final HomeContentController homeContentController = Get.put(HomeContentController());
   
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      
+    return Scaffold( 
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
@@ -114,35 +113,38 @@ class _HomeContent_pageState extends State<HomeContent_page> {
 
                
                 //promoBanner
-               SizedBox(height: 189,
-               child: PageView.builder(
-                onPageChanged: (val){
-                  setState(() {
-                    currentPage=val;
-                  });  
-                },
-                itemBuilder: (context, index) =>  promoBanner(),itemCount: 3,),
-               ),
-
-               SizedBox(height: 9,),
-                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(
-                        3,
-                        (index) => Container(
-                          height:11,width:11,
-                          margin: EdgeInsets.only(left: 5),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: const Color(0xFFDEDBDB),
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                            color: currentPage==index?Color(0xFFFFA3B3):Color(0xfDEDBDB),
-                          ),
-                          
-                        ),
-                      ),
+                SizedBox(
+                height: 189,
+                child: PageView.builder(
+                  onPageChanged: (val) {
+                    homeContentController.currentPage(val);
+                  },
+                  itemBuilder: (context, index) => promoBanner(),
+                  itemCount: 3,
+                ),
+              ),
+              
+              SizedBox(height: 9),
+              
+              Obx(() => Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  3,
+                  (index) => Container(
+                    height: 11,
+                    width: 11,
+                    margin: const EdgeInsets.only(left: 5),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: const Color(0xFFDEDBDB)),
+                      borderRadius: BorderRadius.circular(10),
+                      color: homeContentController.currentPage.value == index
+                          ? const Color(0xFFFFA3B3)
+                          : const Color(0xFFDEDBDB),
                     ),
+                  ),
+                ),
+              )),
+
                 SizedBox(height: 9),
                 dealOfTheDayCard(context),
                 SizedBox(height: 20),
