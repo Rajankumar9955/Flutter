@@ -24,7 +24,7 @@ class DealModel{
   String? metaTitle;
   String? metaDescription;
   String? metaKeywords;
-  Null? isFeatured;
+  String? isFeatured;
   int? status;
   String? createdAt;
   String? updatedAt;
@@ -159,8 +159,8 @@ class Category {
   String? metaDescription;
   String? metaKeywords;
   int? status;
-  Null? createdAt;
-  Null? updatedAt;
+  String? createdAt;
+  String? updatedAt;
   Parentcategory? parentcategory;
 
   Category(

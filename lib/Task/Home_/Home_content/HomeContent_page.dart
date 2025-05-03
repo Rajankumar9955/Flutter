@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:pro1/2nd%20day/model/product_model.dart';
+import 'package:pro1/Task/Category/CategoryProducts/Category_products.dart';
+import 'package:pro1/Task/Category/Controller/Categories_controller.dart';
+import 'package:pro1/Task/Category/Model/Cotegories_Model.dart';
 import 'package:pro1/Task/Home_/DealOfTheDay/DealOfTheDay_page.dart';
 import 'package:pro1/Task/Home_/Home_content/Controller/HomeContent.dart';
 import 'package:pro1/Task/Home_/ProductSliders/HomeProductSlider_page.dart';
 import 'package:pro1/Task/Models/Categories.dart';
 import 'package:pro1/Task/Models/PromoBanner_Model.dart';
 import 'package:get/get.dart';
+import 'package:pro1/core/constants/api_network.dart';
 
 class HomeContent_page extends StatefulWidget {
   const HomeContent_page({super.key});
@@ -17,6 +21,8 @@ class HomeContent_page extends StatefulWidget {
 class _HomeContent_pageState extends State<HomeContent_page> {
  
 final HomeContentController homeContentController = Get.put(HomeContentController());
+final CategoriesController _categoriesController= Get.put(CategoriesController());
+
   
   @override
   Widget build(BuildContext context) {
@@ -73,43 +79,48 @@ final HomeContentController homeContentController = Get.put(HomeContentControlle
                 ),
                 SizedBox(height: 15),
 
-               SizedBox(
-                      height: 100,
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children:
-                              categories.map((category) {
-                                return Padding(
-                                  padding: const EdgeInsets.only(right: 16),
-                                  child: Column(
-                                    children: [
-                                      CircleAvatar(
-                                        radius: 30,
-                                        backgroundImage: AssetImage(
-                                          category.imagePath,
-                                        ),
-                                        child: InkWell(
-                                          onTap: () {
-                                            print(category.Name);
-                                          },
-                                        ),
+               Obx(
+                 () {
+                   return _categoriesController.isLoading.value? Center(child: CircularProgressIndicator()) : SizedBox(
+                          height: 100,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children:
+                                 List.generate(_categoriesController.Categories.length, (index) {
+                                  CategoriesModel category = _categoriesController.Categories[index];
+                                    return Padding(
+                                      padding: const EdgeInsets.only(right: 16),
+                                      child: Column(
+                                        children: [
+                                          CircleAvatar(
+                                            radius: 30,
+                                            backgroundImage: NetworkImage(
+                                              ApiNetwork.imgUrl+category.categoryImage!
+                                            ),
+                                            child: InkWell(
+                                              onTap: () {
+                                                 Get.to(CategoryProducts());
+                                              },
+                                            ),
+                                          ),
+                                          SizedBox(height: 6),
+                                          Text(
+                                            category.categoryName.toString(),
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      SizedBox(height: 6),
-                                      Text(
-                                        category.Name,
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              }).toList(),
-                        ),
-                      ),
-                    ),
+                                    );
+                                  } ,)
+                            ),
+                          ),
+                        );
+                 }
+               ),
 
                
                 //promoBanner
@@ -158,14 +169,6 @@ final HomeContentController homeContentController = Get.put(HomeContentControlle
       ),
     );
   }
-
-  final List<CollectionsModel> categories = [
-    CollectionsModel(Name: 'Beauty', imagePath: 'assets/beauty.jpg', Description: 'sdfaskjdfkasdkjfhsak'),
-    CollectionsModel(Name: 'Fashion', imagePath: 'assets/fashion.jpg', Description: 'sdfaskjdfkasdkjfhsak'),
-    CollectionsModel(Name: 'Kids', imagePath: 'assets/kids.jpeg', Description: 'sdfaskjdfkasdkjfhsak'),
-    CollectionsModel(Name: 'Mens', imagePath: 'assets/mens.webp', Description: 'sdfaskjdfkasdkjfhsak'),
-    CollectionsModel(Name: 'Womens', imagePath: 'assets/women.jpeg', Description: 'sdfaskjdfkasdkjfhsak'),
-  ];
 }
 
 Widget _actionButton(String label, IconData icon) {
