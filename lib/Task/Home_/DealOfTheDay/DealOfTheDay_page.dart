@@ -95,7 +95,6 @@ Widget build(BuildContext context) {
   );
 }
 
-
 Widget buildProductCard(product) {
   return InkWell(
     onTap: (){

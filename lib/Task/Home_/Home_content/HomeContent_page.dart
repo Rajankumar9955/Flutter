@@ -159,8 +159,15 @@ final CategoriesController _categoriesController= Get.put(CategoriesController()
                 SizedBox(height: 9),
                 dealOfTheDayCard(context),
                 SizedBox(height: 20),
-                ProductSlider()
-                 
+                ProductSlider(),
+                SizedBox(height: 13,),
+                SpecialOfferCard(),
+                SizedBox(height: 13,),
+                FlatAndHeelsCard(),
+                SizedBox(height: 18,),
+                trendingProducts(context),
+                SizedBox(height: 12,),
+                 ProductSlider(),
               ],
             ),
           ),
@@ -339,4 +346,219 @@ Widget dealOfTheDayCard(BuildContext context) {
 }
 
 
-// Product Slider
+
+
+
+
+
+
+// Special Offers
+
+class SpecialOfferCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        border: Border.all(color: const Color.fromARGB(255, 208, 222, 248)),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        children: [
+          Image.asset(
+            'assets/offer.png',
+            width: 60,
+            height: 60,
+          ),
+          SizedBox(width: 12),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    'Special Offers',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  SizedBox(width: 6),
+                  Text('😱'),
+                ],
+              ),
+              SizedBox(height: 4),
+              Text(
+                'We make sure you get the\noffer you need at best prices',
+                style: TextStyle(
+                  color: Colors.black54,
+                  fontSize: 13,
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
+
+
+
+class FlatAndHeelsCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // margin: EdgeInsets.all(24),
+      // padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(color: Colors.black12, blurRadius: 6),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Stack(
+            children: [
+              Image.asset('assets/Group 33732 (1).png'),
+              Positioned(
+                left: 0,
+                top: 0,
+                bottom: 0,
+                child: Container(
+                  width: 20,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Colors.orangeAccent, Colors.white],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                ),
+              ),
+              // Shoe image
+              Padding(
+                padding: const EdgeInsets.only(left: 35, top: 30),
+                child: Image.asset(
+                  'assets/sandle.png',
+                  height: 108,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(width: 20),
+          // Text and Button
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Flat and Heels',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'Stand a chance to get rewarded',
+                  style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                ),
+                SizedBox(height: 12),
+                ElevatedButton(
+                  onPressed: () {
+                    // Button action
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.pinkAccent,
+                    padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text('Visit now'),
+                      SizedBox(width: 6),
+                      Icon(Icons.arrow_forward, size: 18),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+Widget trendingProducts(BuildContext context) {
+  return Container(
+    // margin: EdgeInsets.symmetric(horizontal: 1),
+    padding: EdgeInsets.all(8),
+    decoration: BoxDecoration(
+      color: Color(0xFFFD6E87),
+      borderRadius: BorderRadius.circular(16),
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Trending Products",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 8),
+              Row(
+                children: [
+                  Icon(Icons.calendar_month_outlined, color: Colors.white, size: 18),
+                  SizedBox(width: 6),
+                  Text(
+                    "Last Day 29/02/22",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontFamily: "Montserrat",
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        OutlinedButton(
+          style: OutlinedButton.styleFrom(
+            side: BorderSide(color: Colors.white),
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+          onPressed: () {
+             Navigator.push(context, MaterialPageRoute(builder: (context)=>DealOfTheDayProducts()));
+          },
+          child: Row(
+            children: [
+              Text("View all"),
+              SizedBox(width: 4),
+              Icon(Icons.arrow_forward, size: 16),
+            ],
+          ),
+        ),
+      ],
+    ),
+  );
+}
