@@ -167,7 +167,12 @@ final CategoriesController _categoriesController= Get.put(CategoriesController()
                 SizedBox(height: 18,),
                 trendingProducts(context),
                 SizedBox(height: 12,),
-                 ProductSlider(),
+                ProductSlider(),
+                SizedBox(height: 12,),
+                SummerSaleHome(),
+                SizedBox(height:12),
+                ShoeAdCard(),
+
               ],
             ),
           ),
@@ -561,4 +566,167 @@ Widget trendingProducts(BuildContext context) {
       ],
     ),
   );
+}
+
+
+
+class SummerSaleHome extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child:
+
+ Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.asset(
+                'assets/SummerSale.png',
+                fit: BoxFit.cover,
+              ),
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "New Arrivals",
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF000000),
+                      ),
+                    ),
+                    Text(
+                      "Summer’ 25 Collections",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Color(0xFF888888),
+                      ),
+                    ),
+                  ],
+                ),
+                GestureDetector(
+                  onTap: () {
+                    // Handle tap
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFF3366),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      children: const [
+                        Text(
+                          'View all',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        SizedBox(width: 4),
+                        Icon(Icons.arrow_forward, color: Colors.white, size: 16),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+    );
+  }
+}
+
+
+
+
+class ShoeAdCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return
+       Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Sponserd',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 8),
+          Card(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            child: Column(
+              children: [
+                Stack(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+                      child: Image.asset(
+                        'assets/sponserd.png',
+                        width: double.infinity,
+                        height: 250,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Positioned(
+                      top: 20,
+                      left: 0,
+                      right: 0,
+                      child: Column(
+                        children: [
+                          Text(
+                            'UP TO',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 1.2,
+                            ),
+                          ),
+                          Text(
+                            '50% OFF',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 36,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(top: 4),
+                            height: 2,
+                            width: 80,
+                            color: Colors.white,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'up to 50% Off',
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          print("Tapped Sponsored Button");
+                        },
+                        child: Container(
+                          child: Icon(Icons.arrow_forward_ios, size: 16,),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      );
+  }
 }
