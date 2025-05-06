@@ -7,72 +7,70 @@ class CategoryProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Category Page"),),
-     body: Container(
-      child: 
-      SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Search
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade100,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(Icons.search, color: Colors.grey),
-                      SizedBox(width: 10),
-                      Expanded(
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: "Search any Product..",
-                            border: InputBorder.none,
-                          ),
+     return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+          child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Search
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Row(
+                  children: [
+                    const Icon(Icons.search, color: Colors.grey),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: TextField(
+                        decoration: const InputDecoration(
+                          hintText: "Search any Product..",
+                          border: InputBorder.none,
                         ),
                       ),
-                      Icon(Icons.mic, color: Colors.grey),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 20),
-            
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "All Featured",
-                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                     ),
-            
-                    Row(
-                      children: [
-                        _actionButton("Sort", Icons.swap_vert),
-                        SizedBox(width: 10),
-                        _actionButton("Filter", Icons.filter_alt),
-                      ],
-                    ),
+                    const Icon(Icons.mic, color: Colors.grey),
                   ],
                 ),
-                SizedBox(height: 9),  
-                
-// Obx(() {
-      //           if () {
-      //             return const Center(child: CircularProgressIndicator());
-      //           } else {
-                  // return
-                  
+              ),
+              const SizedBox(height: 20),
+              // Header with Sort & Filter buttons
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "All Featured",
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  ),
+                  Row(
+                    children: [
+                      _actionButton("Sort", Icons.swap_vert),
+                      const SizedBox(width: 10),
+                      _actionButton("Filter", Icons.filter_alt),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 15),
+
+              // Categories horizontal scroller
+           
+              // Obx(() {
+              //   if (wishlistController.isLoading.value) {
+              //     return const Center(child: CircularProgressIndicator());
+              //   } else {
+                  // return 
                   GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     padding: const EdgeInsets.all(8),
-                    itemCount:categories.length,
+                    itemCount: categories.length,
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisSpacing: 2,
@@ -80,7 +78,7 @@ class CategoryProducts extends StatelessWidget {
                       mainAxisExtent: 350,
                     ),
                     itemBuilder: (context, index) {
-                      // final product = ;
+                      // final product = wishlistController.ProductItems[index];
                       // final price = product.finalPrice ?? 0.0;
 
                       return Container(
@@ -92,14 +90,12 @@ class CategoryProducts extends StatelessWidget {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          // spacing:2,
                           children: [
-                            // ClipRRect(
-                            //   borderRadius: const BorderRadius.vertical(
-                            //     top: Radius.circular(10),
-                            //   ),
-                            //   child:
-                              //  (Products.imagePath == null || product.images!.isEmpty)
+                            ClipRRect(
+                              borderRadius: const BorderRadius.vertical(
+                                top: Radius.circular(10),
+                              ),
+                              // child: (product.images == null || product.images!.isEmpty)
                               //     ? Container(
                               //         color: const Color.fromRGBO(185, 52, 42, 1),
                               //         height: 120,
@@ -114,11 +110,7 @@ class CategoryProducts extends StatelessWidget {
                               //         width: double.infinity,
                               //         fit: BoxFit.cover,
                               //       ),
-
-                            // ),
-
-                            Container(
-                              child: Image.asset(categories[index].imagePath,height: 120,width:150),
+                              child: Image.asset(categories[index].imagePath, height: 120,width: double.infinity,fit: BoxFit.cover,),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8),
@@ -126,7 +118,7 @@ class CategoryProducts extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                   categories[index].Name,   ///////
+                                    categories[index].Name.toString(),
                                     style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
@@ -136,47 +128,41 @@ class CategoryProducts extends StatelessWidget {
                                   Row(
                                     children: [
                                       Text(
-                                        // '₹${product.productPrice.toString()}',
-                                        categories[index].Description.toString(),
+                                        '₹${categories[index].Description.toString()}',
                                         style: const TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                       const SizedBox(width: 10),
-
-                                
-                                      const SizedBox(width: 10),
                                     ],
                                   ),
-                            Row(children: [
+                                   Row(
+                                    children: [
                                       Text(
-                                        // '${product.productDiscount} %',
-                                         categories[index].productPrice.toString(),
+                                        '₹ ${categories[index].productPrice}',
+                                        style: const TextStyle(
+                                            color: Colors.orange,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16),
+                                      ),
+                                      SizedBox(width: 15,),
+                                      Text(
+                                        '${categories[index].productDiscount}%',
                                         style: const TextStyle(
                                           fontSize: 16,
                                           decoration: TextDecoration.lineThrough,
                                           color: Colors.grey,
                                         ),
                                       ),
-                                      const SizedBox(width: 10),
-                                              Text(
-                                        // '${product.productDiscount} %',
-                                       '${categories[index].productDiscount.toString()}%',
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                          decoration: TextDecoration.lineThrough,
-                                          color: Colors.grey,
-                                        ),
-                                      ),
-                                 ],),
+                                    ],
+                                  ),
                                   Row(
                                     children: [
                                       Text(
-                                        // '₹ $price',
-                                        categories[index].FinalPrice.toString(),
+                                        '₹ ${categories[index].FinalPrice}',
                                         style: const TextStyle(
-                                            color: Colors.orange,
+                                            color: Color.fromARGB(255, 34, 248, 95),
                                             fontWeight: FontWeight.bold,
                                             fontSize: 16),
                                       ),
@@ -221,20 +207,19 @@ class CategoryProducts extends StatelessWidget {
                       );
                     },
                   ),
-                // }
-              // }),   
-              ],
-            ),
+
+                // }/
+            //   }),
+
+            ],
           ),
-        )
-      ),
-     ),
+        ),
+      )),
     );
   }
+}
 
-
-
- List<CollectionsModel> categories = [
+List<CollectionsModel> categories = [
     CollectionsModel(
       imagePath: "assets/beauty.jpg",
       Name: "Beauty",
@@ -282,9 +267,6 @@ class CategoryProducts extends StatelessWidget {
     ),
      
   ];
-}
-
-
 
 Widget _actionButton(String label, IconData icon) {
   return Container(
@@ -302,3 +284,5 @@ Widget _actionButton(String label, IconData icon) {
     ),
   );
 }
+
+
