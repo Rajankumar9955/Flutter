@@ -12,7 +12,8 @@ class _Search_pageState extends State<Search_page> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
+      body: 
+      SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
           child: SingleChildScrollView(

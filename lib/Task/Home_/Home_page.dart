@@ -71,7 +71,7 @@ static final List<Widget> _screen=[
     ),
     floatingActionButton: ClipOval(
       child: Material(
-        color: Color(0xFF7861FF),
+        color: Color.fromARGB(255, 207, 204, 220),
         elevation: 10,
         child: InkWell(
           child: SizedBox(
