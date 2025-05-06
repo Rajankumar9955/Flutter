@@ -170,7 +170,7 @@ final CategoriesController _categoriesController= Get.put(CategoriesController()
                 ProductSlider(),
                 SizedBox(height: 12,),
                 SummerSaleHome(),
-                SizedBox(height:12),
+                SizedBox(height:22),
                 ShoeAdCard(),
 
               ],
