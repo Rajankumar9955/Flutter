@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:pro1/Task/Home_/ProductSliders/Model/Product_model.dart';
 
