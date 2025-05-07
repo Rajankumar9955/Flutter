@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:pro1/Task/Category/Model/Cotegories_Model.dart';
+import 'package:pro1/Task/Home_/ProductSliders/Controller/getX_Controller.dart';
 import 'package:pro1/Task/Models/Categories.dart';
+import 'package:pro1/Task/Pages/ProDetails_page.dart';
 import 'package:pro1/Task/WishList_/Controller/Wishlist_Controller.dart';
 import 'package:pro1/core/constants/api_network.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
@@ -20,9 +22,8 @@ class WishList extends StatefulWidget {
 }
 
 class _WishListState extends State<WishList> {
-  final WishlistController wishlistController = Get.put(WishlistController());
+  final ProductController productController = Get.put(ProductController());
   final CategoriesController _categoriesController= Get.put(CategoriesController());
-
   late Razorpay _razorpay;
 
   // Replace with your Razorpay Test Key and Secret.
@@ -120,6 +121,7 @@ class _WishListState extends State<WishList> {
       };
 
       _razorpay.open(options);
+
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Error: ${e.toString()}"),
@@ -163,12 +165,12 @@ class _WishListState extends State<WishList> {
                 ),
               ),
               const SizedBox(height: 20),
-              // Header with Sort & Filter buttons
+              //Sort & Filter buttons
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "All Featured",
+                   Text(
+                   '${productController.ProductItems.length}+ Items',
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                   Row(
@@ -182,7 +184,7 @@ class _WishListState extends State<WishList> {
               ),
               const SizedBox(height: 15),
 
-              // Categories horizontal scroller
+              // Categories horizontal scroll
             Obx(
                  () {
                    return _categoriesController.isLoading.value? Center(child: CircularProgressIndicator()) : SizedBox(
@@ -225,16 +227,16 @@ class _WishListState extends State<WishList> {
                         );
                  }
                ),
-
+// All produts
               Obx(() {
-                if (wishlistController.isLoading.value) {
+                if (productController.isLoading.value) {
                   return const Center(child: CircularProgressIndicator());
                 } else {
                   return GridView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     padding: const EdgeInsets.all(8),
-                    itemCount: wishlistController.ProductItems.length,
+                    itemCount: productController.ProductItems.length,
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisSpacing: 2,
@@ -242,127 +244,132 @@ class _WishListState extends State<WishList> {
                       mainAxisExtent: 350,
                     ),
                     itemBuilder: (context, index) {
-                      final product = wishlistController.ProductItems[index];
+                      final product = productController.ProductItems[index];
                       final price = product.finalPrice ?? 0.0;
 
-                      return Container(
-                        margin: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey.shade300),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ClipRRect(
-                              borderRadius: const BorderRadius.vertical(
-                                top: Radius.circular(10),
-                              ),
-                              child: (product.images == null || product.images!.isEmpty)
-                                  ? Container(
-                                      color: const Color.fromRGBO(185, 52, 42, 1),
-                                      height: 120,
-                                      width: double.infinity,
-                                      child: const Center(
-                                        child: Text("Image Not Found!"),
-                                      ),
-                                    )
-                                  : Image.network(
-                                      product.images![0].fullUrl! + "/small/" + product.images![0].image!,
-                                      height: 120,
-                                      width: double.infinity,
-                                      fit: BoxFit.cover,
-                                    ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    product.productName.toString(),
-                                    style: const TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        '₹${product.productPrice.toString()}',
-                                        style: const TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
+                      return InkWell(
+                        onTap: (){
+                          Get.to(ProductsDetailsPage(product: product,));
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey.shade300),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ClipRRect(
+                                borderRadius: const BorderRadius.vertical(
+                                  top: Radius.circular(10),
+                                ),
+                                child: (product.images == null || product.images!.isEmpty)
+                                    ? Container(
+                                        color: const Color.fromRGBO(185, 52, 42, 1),
+                                        height: 120,
+                                        width: double.infinity,
+                                        child: const Center(
+                                          child: Text("Image Not Found!"),
                                         ),
-                                      ),
-                                      const SizedBox(width: 10),
-                                      Text(
-                                        '${product.productDiscount} %',
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                          decoration: TextDecoration.lineThrough,
-                                          color: Colors.grey,
-                                        ),
-                                      ),
-                                      const SizedBox(width: 10),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        '₹ $price',
-                                        style: const TextStyle(
-                                            color: Colors.orange,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 16),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 5),
-                                  Row(
-                                    children: [
-                                      Row(
-                                        children: List.generate(5, (starIndex) {
-                                          return const Icon(
-                                            Icons.star,
-                                            size: 18,
-                                            color: Colors.amber,
-                                          );
-                                        }),
-                                      ),
-                                      const SizedBox(width: 3),
-                                      const Text(
-                                        "5.0",
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            color: Colors.green,
-                                            fontWeight: FontWeight.bold),
                                       )
-                                    ],
-                                  ),
-                                  const SizedBox(height: 5),
-                                  Center(
-                                    child: ElevatedButton(
-                                      onPressed: () {
-                                        if (price <= 0) {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(const SnackBar(
-                                            content: Text("Invalid product price"),
-                                            backgroundColor: Colors.red,
-                                          ));
-                                          return;
-                                        }
-                                        _openCheckout(product.finalPrice!.toDouble(), product.productName ?? "Product", product.description ?? "");
-                                      },
-                                      child: const Text("Buy Now"),
-                                    ),
-                                  ),
-                                ],
+                                    : Image.network(
+                                        product.images![0].fullUrl! + "/small/" + product.images![0].image!,
+                                        height: 120,
+                                        width: double.infinity,
+                                        fit: BoxFit.cover,
+                                      ),
                               ),
-                            ),
-                          ],
+                              Padding(
+                                padding: const EdgeInsets.all(8),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      product.productName.toString(),
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '₹${product.productPrice.toString()}',
+                                          style: const TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 10),
+                                        Text(
+                                          '${product.productDiscount} %',
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            decoration: TextDecoration.lineThrough,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 10),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '₹ $price',
+                                          style: const TextStyle(
+                                              color: Colors.orange,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 5),
+                                    Row(
+                                      children: [
+                                        Row(
+                                          children: List.generate(5, (starIndex) {
+                                            return const Icon(
+                                              Icons.star,
+                                              size: 18,
+                                              color: Colors.amber,
+                                            );
+                                          }),
+                                        ),
+                                        const SizedBox(width: 3),
+                                        const Text(
+                                          "5.0",
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              color: Colors.green,
+                                              fontWeight: FontWeight.bold),
+                                        )
+                                      ],
+                                    ),
+                                    const SizedBox(height: 5),
+                                    Center(
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          if (price <= 0) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(const SnackBar(
+                                              content: Text("Invalid product price"),
+                                              backgroundColor: Colors.red,
+                                            ));
+                                            return;
+                                          }
+                                          _openCheckout(product.finalPrice!.toDouble(), product.productName ?? "Product", product.description ?? "");
+                                        },
+                                        child: const Text("Buy Now"),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },
