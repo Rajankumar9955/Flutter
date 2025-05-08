@@ -25,7 +25,7 @@ class _TaskHomePageState extends State<TaskHomePage> {
 static final List<Widget> _screen=[
   HomeContent_page(),
   WishList(),
-  Cart(),
+  AddToCart(),
   Search_page(),
   Settings(),
 ];
