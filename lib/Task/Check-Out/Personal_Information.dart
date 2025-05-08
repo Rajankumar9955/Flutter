@@ -15,9 +15,9 @@ class _PersonalInformationState extends State<PersonalInformation> {
   @override
   Widget build(BuildContext context) {
    return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(        
         leading: BackButton(),
-        title: Text("Checkout"),
+        title: Text("Personal Information", style: TextStyle(fontFamily: 'assets/font/Montserrat-Regular.ttf', fontSize: 20,fontWeight: FontWeight.bold),),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         elevation: 0,
@@ -31,7 +31,8 @@ class _PersonalInformationState extends State<PersonalInformation> {
               CircleAvatar(
                 radius: 40,
                 backgroundColor: Colors.grey.shade300,
-                child: Icon(Icons.person, size: 50),
+                backgroundImage: AssetImage('assets/MyImage.jpg',),
+                // child: Icon(Icons.person, size: 50),
               ),
               SizedBox(height: 20),
               _sectionTitle("Personal Details"),
@@ -57,7 +58,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {},
-                child: Text("Save"),
+                child: Text("Save", style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.pink,
                   minimumSize: Size(double.infinity, 50),
