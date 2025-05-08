@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import 'package:pro1/Task/Check-Out/Personal_Information.dart';
 class Settings extends StatefulWidget {
   const Settings({super.key});
 
@@ -11,17 +12,11 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          child: Text("Settings"),
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.black,
-            )
-          ),
-        ),
-        
-      ),
-    );;
+      body: Container(
+        child: ElevatedButton(onPressed: (){
+                Get.to(PersonalInformation());
+        }, child: Text('click to check the personal Details')),
+      )
+    );
   }
 }

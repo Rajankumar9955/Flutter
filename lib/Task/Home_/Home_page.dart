@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pro1/Task/AddToCart/Cart_page.dart';
+import 'package:pro1/Task/Check-Out/Personal_Information.dart';
 import 'package:pro1/Task/Home_/Home_content/HomeContent_page.dart';
 // import 'package:pro1/Task/Components/SearchSection.dart';
 import 'package:pro1/Task/Search_/Search_page.dart';
 import 'package:pro1/Task/Settings_/Settings.dart';
 import 'package:pro1/Task/WishList_/Wishlist.dart';
 import 'package:pro1/Task/Pages/NavbarSlider_page.dart';//////////////////////////
+import 'package:get/get.dart';
 
 class TaskHomePage extends StatefulWidget {
   const TaskHomePage({super.key});
@@ -46,7 +48,7 @@ static final List<Widget> _screen=[
         backgroundColor: Colors.white,
         actions: [
           IconButton(onPressed: (){
-
+                  Get.to(PersonalInformation());
           }, icon: Icon(Icons.admin_panel_settings)),
         ],
 
