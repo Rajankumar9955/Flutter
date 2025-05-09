@@ -18,6 +18,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
    final _formKey = GlobalKey<FormState>();
    LoginController loginController=Get.put(LoginController());
+   bool _isObscure = true;
  
   var isLogin=false.obs;
   @override
@@ -61,10 +62,16 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     SizedBox(height: 28),
                     TextFormField(
+                      obscureText: _isObscure,
                       controller: loginController.passwordController,
                       decoration: InputDecoration(
                         hintText: "Password",
-                        prefixIcon: Icon(Icons.password),
+                        prefixIcon: Icon(Icons.lock),
+                        suffixIcon: IconButton(onPressed: (){
+                               setState(() {
+                                 _isObscure = !_isObscure;
+                              });
+                        }, icon: Icon(_isObscure ? Icons.visibility : Icons.visibility_off,)),
                         border: OutlineInputBorder(),
                       ),
                       onChanged: (String value) {},
