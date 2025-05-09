@@ -15,6 +15,8 @@ class CreateUserPage extends StatefulWidget {
 
 class _CreateUserPageState extends State<CreateUserPage> {
 RegisterationController registerationController=Get.put(RegisterationController());
+bool _isObscure=false;
+bool _Obscure=false;
 
   @override
   Widget build(BuildContext context) {
@@ -97,19 +99,32 @@ RegisterationController registerationController=Get.put(RegisterationController(
                   SizedBox(height: 5),
 
                     TextFormField(
+                      obscureText: _isObscure,
                       controller: registerationController.passwordController,
                       decoration: InputDecoration(
                         hintText: "Password",
-                        prefixIcon: Icon(Icons.password),
+                        prefixIcon: Icon(Icons.lock),
+                        suffixIcon: IconButton(onPressed: (){
+                               setState(() {
+                                 _isObscure=!_isObscure;
+                               });
+                        }, icon: Icon(_isObscure?Icons.visibility:Icons.visibility_off)),
                         border: OutlineInputBorder(),
                       ),
                     ),
                     SizedBox(height: 5,),
                     TextFormField(
+                      obscureText: _Obscure,
                       controller: registerationController.confirmPassController,
                       decoration: InputDecoration(
                         hintText: "Confirm Password",
-                        prefixIcon: Icon(Icons.password),
+                        prefixIcon: Icon(Icons.lock),
+                        suffixIcon: IconButton(onPressed: (){
+                                setState(() {
+                                  _Obscure=!_Obscure;
+                                });
+                        }, icon: Icon(_Obscure?Icons.visibility:Icons.visibility_off)),
+
                         border: OutlineInputBorder(),
                       ),
                     ),
