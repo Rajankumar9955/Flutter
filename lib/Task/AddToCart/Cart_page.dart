@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pro1/Task/User_Information/User_Address.dart';
 
- class AddToCart extends StatefulWidget {
+
+class AddToCart extends StatefulWidget {
   const AddToCart({super.key});
 
   @override
@@ -9,23 +11,6 @@ import 'package:get/get.dart';
 }
 
 class _AddToCartState extends State<AddToCart> {
-  @override
-  Widget build(BuildContext context) {
-   return MaterialApp(
-    debugShowCheckedModeBanner: false,
-      home: const CheckoutScreen(),
-   );
-  }
-}
-
-class CheckoutScreen extends StatefulWidget {
-  const CheckoutScreen({super.key});
-
-  @override
-  State<CheckoutScreen> createState() => _CheckoutScreenState();
-}
-
-class _CheckoutScreenState extends State<CheckoutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,15 +46,20 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   ),
                 ),
                  SizedBox(width: 8),
-                Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [BoxShadow(blurRadius: 5, color: Colors.grey.shade300)],
-                    borderRadius: BorderRadius.circular(12),
+                  InkWell(
+                    onTap: (){
+                     Get.to(UserAddress());
+                    },
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [BoxShadow(blurRadius: 5, color: Colors.grey.shade300)],
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Icon(Icons.add),
                   ),
-                  child: const Icon(Icons.add),
                 ),
               ],
             ),
@@ -140,6 +130,8 @@ class ShoppingItemCard extends StatefulWidget {
   @override
   State<ShoppingItemCard> createState() => _ShoppingItemCardState();
 }
+
+
 
 class _ShoppingItemCardState extends State<ShoppingItemCard> {
   int qnty=0;
