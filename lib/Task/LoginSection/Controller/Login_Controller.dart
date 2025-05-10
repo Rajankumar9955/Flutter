@@ -17,7 +17,6 @@ class LoginController extends GetxController{
 
   TextEditingController passwordController = TextEditingController();
 
-  // final Future <SharedPreferences>_prefs= SharedPreferences.getInstance();
    
    RxBool loading=false.obs;
 
