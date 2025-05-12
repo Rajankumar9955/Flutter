@@ -109,7 +109,7 @@ class _Search_pageState extends State<Search_page> {
         'name': productName,
         'order_id': orderId,
         'description': description,
-        'timeout': 60,
+        'timeout': 90,
         'prefill': {
           'contact': '9955236973', // Optionally, get from user profile
           'email': 'krajan92946@gmail.com' // Optionally, get from user profile
@@ -124,9 +124,11 @@ class _Search_pageState extends State<Search_page> {
       ));
     }
   }
+
 List<Product>search=[
    
 ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -159,9 +161,7 @@ List<Product>search=[
                               search.clear();
                               productController.ProductItems.map((e){
                               if(e.productName!.toLowerCase().contains(value.toLowerCase().trim())){
-                                
                                   search.add(e);
-                                
                               }
                             }).toList();
                             });

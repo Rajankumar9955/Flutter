@@ -38,6 +38,7 @@ dependencies:
   # google_fonts: ^6.2.1
   modal_progress_hud_nsn: ^0.5.1
   shared_preferences: ^2.5.3
+  double_back_to_close_app: ^2.1.0
   # carousel_slider: ^5.0.0
 
 dev_dependencies:

@@ -9,6 +9,8 @@ import 'package:pro1/Task/WishList_/Wishlist.dart';
 import 'package:pro1/Task/Pages/NavbarSlider_page.dart';
 import 'package:get/get.dart';
 
+import 'package:double_back_to_close_app/double_back_to_close_app.dart';
+
 class TaskHomePage extends StatefulWidget {
   const TaskHomePage({super.key});
 
@@ -18,6 +20,7 @@ class TaskHomePage extends StatefulWidget {
 
 class _TaskHomePageState extends State<TaskHomePage> {
   int _selecteIndex=0;
+  DateTime timeBackPressed= DateTime.now();
 
 static final List<Widget> _screen=[
   HomeContent_page(),
@@ -34,6 +37,7 @@ static final List<Widget> _screen=[
   }
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       resizeToAvoidBottomInset: false,
       drawer: NavbarSlider(),
@@ -52,8 +56,10 @@ static final List<Widget> _screen=[
         
        ),
 
-       body: _screen[_selecteIndex],
-
+       body: DoubleBackToCloseApp( snackBar: const SnackBar(
+            content: Text('Tap back again to Exit app'),
+          ), child: _screen[_selecteIndex], ),
+  
 // //////////////////////////////////////////////////////
     bottomNavigationBar: BottomAppBar(
       child: Row(
