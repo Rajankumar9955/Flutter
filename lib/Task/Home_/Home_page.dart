@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:pro1/Task/AddToCart/Cart_page.dart';
 import 'package:pro1/Task/Check-Out/Personal_Information.dart';
 import 'package:pro1/Task/Home_/Home_content/HomeContent_page.dart';
-// import 'package:pro1/Task/Components/SearchSection.dart';
 import 'package:pro1/Task/Search_/Search_page.dart';
 import 'package:pro1/Task/Settings_/Settings.dart';
 import 'package:pro1/Task/WishList_/Wishlist.dart';
-import 'package:pro1/Task/Pages/NavbarSlider_page.dart';//////////////////////////
+import 'package:pro1/Task/Pages/NavbarSlider_page.dart';
 import 'package:get/get.dart';
 
 class TaskHomePage extends StatefulWidget {
@@ -19,8 +18,6 @@ class TaskHomePage extends StatefulWidget {
 
 class _TaskHomePageState extends State<TaskHomePage> {
   int _selecteIndex=0;
-
-    
 
 static final List<Widget> _screen=[
   HomeContent_page(),
@@ -71,21 +68,15 @@ static final List<Widget> _screen=[
           ],
       ),
     ),
-    floatingActionButton: ClipOval(
-      child: Material(
-        color: Color.fromARGB(255, 207, 204, 220),
-        elevation: 10,
-        child: InkWell(
-          child: SizedBox(
-            height: 56,
-            width: 56,
-            child: buildNavBarItem(CupertinoIcons.cart, "Cart",2),         
-            ),
-        ),
-      ),
-    ),
-    floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-    
+    floatingActionButton: FloatingActionButton(backgroundColor: Colors.white, 
+                      shape:  CircleBorder(), 
+                         child: Icon(CupertinoIcons.cart, color: _selecteIndex==2 ? Colors.red:Colors.black87,),
+                            onPressed: (){
+                              setState(() {
+                                _selecteIndex=2;
+                              });
+                          }),
+                          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
   

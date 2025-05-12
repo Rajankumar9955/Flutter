@@ -48,6 +48,7 @@ final CategoriesController _categoriesController= Get.put(CategoriesController()
                       SizedBox(width: 10),
                       Expanded(
                         child: TextField(
+                                   
                           decoration: InputDecoration(
                             hintText: "Search any Product..",
                             border: InputBorder.none,
