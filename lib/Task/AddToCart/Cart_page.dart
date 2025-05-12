@@ -134,7 +134,7 @@ class ShoppingItemCard extends StatefulWidget {
 
 
 class _ShoppingItemCardState extends State<ShoppingItemCard> {
-  int qnty=0;
+  int qnty=1;
   @override
   Widget build(BuildContext context) {
     final quantity=qnty;
@@ -205,7 +205,7 @@ class _ShoppingItemCardState extends State<ShoppingItemCard> {
                   }, child: Text("+", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
                   ElevatedButton(onPressed: (){
                            setState(() {
-                          if(qnty>0){
+                          if(qnty>1){
                             qnty--;
                           }
                           else{

@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:pro1/3rd%20day/product_detail_page.dart';
+// import 'package:pro1/Getx/Models/product_model.dart';
 import 'package:pro1/Task/Home_/ProductSliders/Controller/getX_Controller.dart';
+import 'package:pro1/Task/Home_/ProductSliders/Model/Product_model.dart';
 import 'package:pro1/Task/Pages/ProDetails_page.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
@@ -18,6 +20,7 @@ class Search_page extends StatefulWidget {
 
 class _Search_pageState extends State<Search_page> {
   final ProductController productController = Get.put(ProductController());
+  TextEditingController searchController=TextEditingController();
    final String razorPayKey = "rzp_test_xH8lHTk2JMtS8k";
   final String razorPaySecret = "Q3XceCmcCk3ewdZf5G1mVtPM"; // Should be stored securely and used on backend
 
@@ -121,7 +124,9 @@ class _Search_pageState extends State<Search_page> {
       ));
     }
   }
-
+List<Product>search=[
+   
+];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -147,6 +152,20 @@ class _Search_pageState extends State<Search_page> {
                       SizedBox(width: 10),
                       Expanded(
                         child: TextField(
+                          controller: searchController,
+                          onChanged: (value) {
+                            print(value);
+                            setState(() {
+                              search.clear();
+                              productController.ProductItems.map((e){
+                              if(e.productName!.toLowerCase().contains(value.toLowerCase().trim())){
+                                
+                                  search.add(e);
+                                
+                              }
+                            }).toList();
+                            });
+                          },
                           decoration: InputDecoration(
                             hintText: "Search any Product..",
                             border: InputBorder.none,
@@ -186,7 +205,7 @@ class _Search_pageState extends State<Search_page> {
                     // physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     padding: const EdgeInsets.all(8),
-                    itemCount: productController.ProductItems.length,
+                    itemCount:searchController.text==""? productController.ProductItems.length:search.length,
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       mainAxisSpacing: 2,
@@ -194,7 +213,7 @@ class _Search_pageState extends State<Search_page> {
                       mainAxisExtent: 350,
                     ),
                     itemBuilder: (context, index) {
-                      final product = productController.ProductItems[index];
+                      final product =searchController.text!=""?search[index]: productController.ProductItems[index];
                       final price = product.finalPrice ?? 0.0;
 
                       return InkWell(
@@ -338,6 +357,7 @@ class _Search_pageState extends State<Search_page> {
       ),
     );
   }
+
 }
 
 Widget _actionButton(String label, IconData icon) {

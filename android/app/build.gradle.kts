@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.pro1"
-    compileSdk = 34
+    compileSdk = 35
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -38,6 +38,7 @@ android {
         }
     }
 }
+
 
 flutter {
     source = "../.."
