@@ -52,8 +52,6 @@ static final List<Widget> _screen=[
                   Get.to(PersonalInformation());
           }, icon: Icon(Icons.admin_panel_settings)),
         ],
-
-        
        ),
 
        body: DoubleBackToCloseApp( snackBar: const SnackBar(
@@ -70,7 +68,6 @@ static final List<Widget> _screen=[
          const SizedBox(width: 20),
           buildNavBarItem(CupertinoIcons.search, 'Search', 3),
           buildNavBarItem(CupertinoIcons.settings, 'Settings', 4),
-
           ],
       ),
     ),
