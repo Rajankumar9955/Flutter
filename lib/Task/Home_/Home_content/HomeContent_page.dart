@@ -101,7 +101,7 @@ final CategoriesController _categoriesController= Get.put(CategoriesController()
                                             ),
                                             child: InkWell(
                                               onTap: () {
-                                                 Get.to(CategoryProducts());
+                                                 Get.to(CategoryProducts(ID:category.id!));
                                               },
                                             ),
                                           ),
