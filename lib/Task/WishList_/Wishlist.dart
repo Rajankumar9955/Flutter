@@ -206,7 +206,7 @@ class _WishListState extends State<WishList> {
                                             ),
                                             child: InkWell(
                                               onTap: () {
-                                                 Get.to(CategoryProducts());
+                                                 Get.to(CategoryProducts(ID:category.id!,));
                                               },
                                             ),
                                           ),
@@ -279,7 +279,9 @@ class _WishListState extends State<WishList> {
                                         height: 120,
                                         width: double.infinity,
                                         fit: BoxFit.cover,
+
                                       ),
+                                      
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8),

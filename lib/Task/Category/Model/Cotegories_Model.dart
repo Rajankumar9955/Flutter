@@ -12,7 +12,7 @@ class CategoriesModel {
   int? status;
   String? createdAt;
   String? updatedAt;
-  Null? parentcategory;
+  String? parentcategory;
 
   CategoriesModel(
       {this.id,
