@@ -132,7 +132,6 @@ class _Search_pageState extends State<Search_page> {
     }
   }
 
-  @override
  @override
 Widget build(BuildContext context) {
   return Scaffold(
@@ -160,13 +159,12 @@ Widget build(BuildContext context) {
                       onChanged: (value) {
                         setState(() {
                           search.clear();
-                          productController.ProductItems.map((e) {
-                            if (e.productName!
-                                .toLowerCase()
-                                .contains(value.toLowerCase().trim())) {
-                              search.add(e);
-                            }
-                          });
+                          for (var e in productController.ProductItems) {
+                          if (e.productName != null &&
+                              e.productName!.toLowerCase().contains(value.toLowerCase().trim())) {
+                            search.add(e);
+                          }
+                        }
                           _sortProductList(search);
                         });
                       },
@@ -196,6 +194,7 @@ Widget build(BuildContext context) {
                       onSelected: (value) {
                         setState(() {
                           _sortOrder = value;
+                          // searchController=value;
                           if (searchController.text != "") {
                             _sortProductList(search);
                           } else {
