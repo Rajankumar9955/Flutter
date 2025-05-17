@@ -153,6 +153,12 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                     children: [
                     ElevatedButton(onPressed: (){
                               ////////////////////////
+                       ScaffoldMessenger.of(context).showSnackBar(
+                       SnackBar(
+                             content: Text("Your are print Your purchase items invoice"),
+                             backgroundColor: Colors.red,
+                        ),
+                        );
                     }, child: Text("Print"))
                   ],)
                 ],
