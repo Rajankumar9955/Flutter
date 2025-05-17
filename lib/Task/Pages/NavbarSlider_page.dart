@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pro1/Task/Invoice_pdf/main_file.dart';
+import 'package:pro1/Task/Invoice_pdf/product_Invoice.dart';
 import 'package:pro1/Task/LoginSection/CreateUser_page.dart';
 import 'package:pro1/data/session_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -69,8 +71,12 @@ class NavbarSlider extends StatelessWidget {
                   
                   ListTile(
                     leading: Icon(Icons.description),
-                    title: Text('Policies', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
-                    onTap: () => null,
+                    title: Text('Generate Invoice', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
+                    onTap: (){
+                   Navigator.of(context).push(
+                           MaterialPageRoute(builder: (context) => InvoiceScreen()),
+                        );
+                    },
                   ),
                   Divider(),
                   SizedBox(height: 26,),
