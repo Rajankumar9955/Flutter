@@ -32,6 +32,7 @@ class LayoutWidget extends StatelessWidget {
   ];
 }
 
+
 class CardWidget extends StatelessWidget {
   final Productmodel1 data;
  
