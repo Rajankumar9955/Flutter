@@ -146,7 +146,6 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
                       SizedBox(width: 10),
                       Text('\₹520.00'),
                     ],
-                    
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
